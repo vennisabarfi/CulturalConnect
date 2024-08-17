@@ -1,6 +1,8 @@
 package main
 
 import (
+	"culture_app/controllers"
+	"database/sql"
 	"fmt"
 	"log"
 	"os"
@@ -8,7 +10,10 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq" // postgres driver
 )
+
+var pool *sql.DB
 
 // load env file
 func LoadEnv() {
@@ -26,9 +31,28 @@ func main() {
 	r.Use(cors.Default())
 	// port := os.Getenv("PORT")
 
+	// connect to database
+	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	// pool, err := sql.Open("postgres", "user=postgres password=PNeumono38%21 dbname=classic_movies_db sslmode=disable")
+	if err != nil {
+		log.Fatal("Error opening database connection", err)
+	} else {
+		fmt.Println("Database connection successful")
+	}
+
+	defer pool.Close()
+
 	r.GET("/home", func(c *gin.Context) {
 		c.String(200, "Welcome to the Culture Connect API")
 	})
+
+	// user handlers
+	user := r.Group("/user-auth")
+	{
+		user.POST("/register", controllers.CreateUser)
+		user.POST("/login", controllers.LoginUser)
+	}
+
 	port := "localhost:" + os.Getenv("PORT")
 
 	r.Run(port)

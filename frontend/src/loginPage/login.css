@@ -46,9 +46,11 @@
   font-weight: 500;
   height: 35px;
   width: 100%;
+  margin-top: 10px;
 
   background-color: white;
-  color: var(--violet-11);
+  color: black;
+  font-weight: bold;
   box-shadow: 0 2px 10px var(--black-a7);
   }
 
@@ -61,11 +63,11 @@
   }
 
   .login-input {
-  width: 100%;
+  width: 96%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 3px;
 
   font-size: 15px;
   color: black;
