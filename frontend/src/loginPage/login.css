@@ -87,3 +87,8 @@
   background-color: var(--black-a9);
   color: white;
 }
+
+.error-message{
+  background-color: black;
+  color: white;
+}

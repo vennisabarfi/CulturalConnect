@@ -27,7 +27,7 @@ func LoadEnv() {
 func main() {
 
 	LoadEnv()
-	r := gin.Default()
+	r := gin.Default() 
 	r.Use(cors.Default())
 	// port := os.Getenv("PORT")
 
