@@ -16,7 +16,8 @@ export default function SignUp() {
         const data = Object.fromEntries(formData);
 
         try {
-            const response = await axios.post("http://localhost:3000/user-auth/sign-up", {
+            const response = await axios.post("http://localhost:3000/user-auth/register", {
+                username: data.username,
                 email: data.email,
                 password: data.password,
             });
@@ -42,8 +43,21 @@ export default function SignUp() {
 
     return (
         <div className='signup-box'>
-            <h1>Login Here</h1>
+            <h1>Sign Up Here</h1>
             <Form.Root className="Signup-FormRoot" onSubmit={onSubmit} onClearServerErrors={onClearServerErrors}>
+            <Form.Field className='SignupField' name="username">
+                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                        <Form.Label className="FormLabel">Username</Form.Label>
+                        <Form.Message className="FormMessage" match="valueMissing">
+                            Please enter a username
+                        </Form.Message>
+                    </div>
+                    <Form.Control asChild>
+                        <input name="username" className="signup-input" type="text" required />
+                    </Form.Control>
+            
+                </Form.Field>
+
                 <Form.Field className='SignupField' name="email" >
                     <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
                         <Form.Label className="FormLabel">Email</Form.Label>
@@ -55,12 +69,12 @@ export default function SignUp() {
                         </Form.Message>
                     </div>
                     <Form.Control asChild>
-                        <input name="email" className="login-input" type="email" required />
+                        <input name="email" className="signup-input" type="email" required />
                     </Form.Control>
             
                 </Form.Field>
 
-                <Form.Field className='LoginField' name="password">
+                <Form.Field className='SignupField' name="password">
                     <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
                         <Form.Label className="FormLabel">Password</Form.Label>
                         <Form.Message className="FormMessage" match="valueMissing">
@@ -68,12 +82,12 @@ export default function SignUp() {
                         </Form.Message>
                     </div>
                     <Form.Control asChild>
-                        <input name="password" className="login-input" type="password" required />
+                        <input name="password" className="signup-input" type="password" required />
                     </Form.Control>
                 </Form.Field>
 
                 <Form.Submit asChild>
-                    <button className='login-submit-button'>
+                    <button className='signup-submit-button'>
                         Submit
                     </button>
                 </Form.Submit>

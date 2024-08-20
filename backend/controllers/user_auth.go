@@ -70,7 +70,7 @@ func CreateUser(c *gin.Context) {
 	}
 
 	// if error with fields
-	if err := c.BindJSON(&body); err != nil {
+	if err := c.ShouldBindJSON(&body); err != nil {
 		log.Fatalf("Error binding data:", err)
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error Binding JSON Data": err,
