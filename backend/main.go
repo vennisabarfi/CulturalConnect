@@ -27,7 +27,7 @@ func LoadEnv() {
 func main() {
 
 	LoadEnv()
-	r := gin.Default() 
+	r := gin.Default()
 	r.Use(cors.Default())
 	// port := os.Getenv("PORT")
 
@@ -51,6 +51,7 @@ func main() {
 	{
 		user.POST("/register", controllers.CreateUser)
 		user.POST("/login", controllers.LoginUser)
+		user.POST("/logout", controllers.LogoutUser)
 	}
 
 	port := "localhost:" + os.Getenv("PORT")

@@ -33,7 +33,7 @@ export default function Home(){
   <TabNav.Link asChild>
           <Link to="/login">Login</Link>
         </TabNav.Link>
-  <TabNav.Link href="#">Settings</TabNav.Link>
+  <TabNav.Link href="/signup">Sign Up</TabNav.Link>
   
   </TabNav.Root>
 

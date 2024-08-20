@@ -4,6 +4,7 @@ import { Theme } from '@radix-ui/themes';
 
 import Home from "./homePage/Home";
 import Login from "./loginPage/Login";
+import SignUp from "./signupPage/Signup";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </Theme>
