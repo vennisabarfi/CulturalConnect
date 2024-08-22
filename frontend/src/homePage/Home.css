@@ -1,0 +1,79 @@
+.search-title{
+    margin-right: 50px;
+    margin-top: 30px;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+.search-subtitle{
+    margin-right: 50px;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+
+}
+.business-name{
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.searchbox {
+    /* padding: 3em; */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width:100%;
+  
+}
+
+.search-input-1{
+    width: 20em;
+    justify-content: center;
+    position:relative;
+    font-size: 16px;
+    padding: 10px;
+ 
+}
+
+.search-input-1 :focus{
+    color: #000;
+    border-color: #007BFF;
+    outline: none;
+ 
+}
+
+
+.search-input-2{
+    width: 15em;
+    justify-content: center;
+    position:relative;
+    margin-left: 3px;
+    font-size: 16px;
+    padding: 10px;
+    
+  
+    
+ 
+}
+
+.search-input-2 :focus{
+    color: #000;
+    border-color: #007BFF;
+    outline: none;
+ 
+}
+
+.search-button{
+    padding-left: none;
+    margin-left: -1px;
+    
+    
+    
+}
