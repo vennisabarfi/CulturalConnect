@@ -143,3 +143,44 @@ margin:auto;
 
 }
 
+
+/* drop down menu for resources */
+.tabs {
+    position: relative;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-trigger {
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    width: 100%;  /* This makes the dropdown the same width as the tab */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;  /* This centers the text in the dropdown items */
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }

@@ -25,28 +25,36 @@ export default function Home(){
     
     <main className="responsive home-body">
     <div className="tabs">
-  <a className="active">
+  <a className='active' href="/" onClick={(e) => e.preventDefault()}>
     <i>home</i>
     <span>Home</span>
   </a>
-  <a>
+  <a href="/events">
     <i></i>
     <span>Events</span>
   </a>
-  <a>
-    <i></i>
-    <span>Resources</span>
+  <a className="dropdown" href="/resources" >
+    <span className="dropdown-trigger">
+      <i></i>
+      <span>Resources</span>
+      <i></i>
+    </span>
+    <div className="dropdown-menu wrap">
+      <a href="#option1">Non-Profit Organizations</a>
+      <a href="#option2">Shelters</a>
+      <a href="#option3">Food Banks</a>
+    </div>
   </a>
-  <a>
+  <a href="/contribute">
     <i></i>
     <span>Contribute</span>
   </a>
-  <a>
+  <a href="/contact">
     <i></i>
     <span>Contact Us</span>
   </a>
-  
 </div>
+ 
 
 <div className="search-title">
 <h2>Cincinnati Online LGBTQ+ Directory</h2>
@@ -55,12 +63,12 @@ export default function Home(){
 <h5>Find Businesses, Events and More</h5>
 </div>
 
-<div className="searchbox center">
+<div className="searchbox center wrap">
    <form onSubmit={handleSubmit}>
-    <input type="text" className="left-round search-input-1" placeholder="  Business, Event..."      value={businessEvent}   onChange={handleBusinessEventChange}></input>
+    <input type="text" className="left-round search-input-1" placeholder="Business, Event..."      value={businessEvent}   onChange={handleBusinessEventChange}></input>
    
-    <input type="text" className="right-round  search-input-2" placeholder="   Location..."         value={location}  onChange={handleLocationEventChange}></input>
-    <button className="search-button large">Search</button>
+    <input type="text" className="right-round  search-input-2" placeholder="Location..."         value={location}  onChange={handleLocationEventChange}></input>
+    <button className="search-button large ">Search</button>
     </form>
 </div>
 
@@ -182,7 +190,7 @@ export default function Home(){
 
 <hr/>
 <footer>
-<p>This is our footer. I haven't added shit yet.</p>
+<p>This is our footer. I have not added shit yet.</p>
 </footer>
 
 
