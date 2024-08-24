@@ -41,8 +41,34 @@
   }
 
 
-  /* search bar for resources */
+  /* filter area for resources */
+
+  .filter-text{
+    font-size: 1.8em;
+    margin-bottom: 10%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .search-text{
+    font-size: 1.2em;
+  }
 
 .filter-area{
-  width: 50%;
+  margin-top: 5%;
+  margin-left: 1%;
+  float: left;
+  min-height: 100px;
+  width: 260px;
+  margin-bottom: 30%;
+  border: 1px solid black;
+  /* margin: 10px; */
+  align-items: left;
 }
+
+.type-filter{
+    font-size: larger;
+    margin-left: 5%;
+   
+}
+

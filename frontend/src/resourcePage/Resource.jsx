@@ -34,7 +34,70 @@ export default function Resource(){
     <i></i>
     <span>Contact Us</span>
   </a>
+
 </div>
+
+
+
+
+<article className='filter-area'>
+    <span className='filter-text'>Filter</span>
+    <div className="space"></div>
+
+<span className='search-text'>Search</span>
+<div className="field medium prefix round fill">
+  <i className="front">search</i>
+  <input placeholder='Look up resources...'/>
+  
+</div>
+<details className='type-filter'>
+    <summary>Type</summary>
+    <fieldset>
+  <legend>Select one or more</legend>
+  <nav class="vertical">
+    <label class="checkbox">
+      <input type="checkbox"/>
+      <span>NGO</span>
+    </label>
+    <label class="checkbox">
+      <input type="checkbox"/>
+      <span>Food Bank</span>
+    </label>
+    <label class="checkbox">
+      <input type="checkbox"/>
+      <span>Shelter</span>
+    </label>
+  </nav>
+</fieldset>
+</details>
+
+<details className='type-filter'>
+    <summary>Location</summary>
+    <fieldset>
+  <legend>Select one or more</legend>
+  <nav class="vertical">
+    <label class="checkbox">
+      <input type="checkbox"/>
+      <span>Downtown Cincinnati</span>
+    </label>
+    <label class="checkbox">
+      <input type="checkbox"/>
+      <span>East</span>
+    </label>
+    <label class="checkbox">
+      <input type="checkbox"/>
+      <span>West</span>
+    </label>
+  </nav>
+</fieldset>
+</details>
+
+
+
+
+</article>
+
+
 
        </>
 
