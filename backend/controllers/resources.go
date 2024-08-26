@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"image"
 	_ "image/png"
 	"log"
 	"net/http"
@@ -16,31 +15,31 @@ import (
 )
 
 type Resources struct {
-	ID           int64       `json:"id"`
-	DisplayImage image.Image `json:"display_image"`
-	OrgName      string      `json:"org_name"`
-	Description  string      `json:"description"`
-	Location     string      `json:"location"`
-	Website      string      `json:"website"`
-	Type         string      `json:"type"`
-	Email        string      `json:"email"`
-	Phone        string      `json:"phone"`
-	CreatedAt    string      `json: created_at`
-	DeletedAt    string      `json: deleted_at`
+	ID           int64          `json:"id"`
+	DisplayImage sql.NullString `json:"display_image"`
+	OrgName      string         `json:"org_name"`
+	Description  string         `json:"description"`
+	Location     string         `json:"location"`
+	Website      string         `json:"website"`
+	Type         string         `json:"type"`
+	Email        string         `json:"email"`
+	Phone        string         `json:"phone"`
+	CreatedAt    string         `json: created_at`
+	DeletedAt    string         `json: deleted_at`
 }
 
 var pool *sql.DB
 
 func InsertResource(c *gin.Context) {
 	var body struct {
-		DisplayImage image.Image `json:"display_image"`
-		OrgName      string      `json:"org_name" binding:"required"`
-		Description  string      `json:"description" binding:"required"`
-		Location     string      `json:"location"`
-		Website      string      `json:"website"`
-		Type         string      `json:"type" binding:"required"`
-		Email        string      `json:"email" binding:"required"`
-		Phone        string      `json:"phone"`
+		DisplayImage sql.NullString `json:"display_image"`
+		OrgName      string         `json:"org_name" binding:"required"`
+		Description  string         `json:"description" binding:"required"`
+		Location     string         `json:"location"`
+		Website      string         `json:"website"`
+		Type         string         `json:"type" binding:"required"`
+		Email        string         `json:"email" binding:"required"`
+		Phone        string         `json:"phone"`
 	}
 
 	// if error with fields

@@ -65,9 +65,10 @@ export default function Home(){
 
 <div className="searchbox center wrap">
    <form onSubmit={handleSubmit}>
-    <input type="text" className="left-round search-input-1" placeholder="Business, Event..."      value={businessEvent}   onChange={handleBusinessEventChange}></input>
+    {/* can add left-round or right-round */}
+    <input type="text" className=" search-input-1" placeholder="Business, Event..."      value={businessEvent}   onChange={handleBusinessEventChange}></input>
    
-    <input type="text" className="right-round  search-input-2" placeholder="Location..."         value={location}  onChange={handleLocationEventChange}></input>
+    <input type="text" className="  search-input-2" placeholder="Location..."         value={location}  onChange={handleLocationEventChange}></input>
     <button className="search-button large ">Search</button>
     </form>
 </div>

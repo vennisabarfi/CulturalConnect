@@ -1,8 +1,41 @@
 import 'beercss'
 import './Resource.css'
+import axios from 'axios'
+import { useState, useEffect } from 'react';
+
 
 
 export default function Resource(){
+    const [resources, setResources] = useState([]);
+    const [serverMessage, setServerMessage] = useState('');
+    const [serverErrors, setServerErrors] = useState('');
+
+  useEffect(function(){
+    async function fetchResourceData(){
+      try {
+        const response = await axios.get('http://localhost:3000/resource/view');
+        setResources(response.data["Resources Found"])
+
+        if (response.status === 200) {
+
+          setServerMessage(response.data.message)
+          console.log(response.data)
+          
+          
+      }
+      } catch (error) {
+        // add functionality to redirect to error page (404 page)
+        setServerErrors(error.response.data.message)
+            
+            console.log(`Error retrieving resources information: ${error.response.data.message}`)
+      }
+    }
+    
+    fetchResourceData();
+  }, []); 
+
+ 
+
     return(
         <>
    <div className="tabs">
@@ -92,11 +125,27 @@ export default function Resource(){
 </fieldset>
 </details>
 
-
-
-
 </article>
 
+<h2>Resource List</h2>
+
+  {serverMessage && <p className="server-message">{serverMessage}</p>}
+  {serverErrors && <p className="server-error">{serverErrors}</p>}
+
+  {/* unique key for items */}
+  
+     {resources.map((resource)=>(
+        <ul className='resources-list'  key={resource.id}>
+        <li>
+        <h1>{resource.org_name}</h1>
+        <p>{resource.description}</p>
+        <p>{resource.location}</p>
+        <p>Website: {resource.website}</p>
+        </li>
+        
+      </ul>
+
+     ))}
 
 
        </>
