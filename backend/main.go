@@ -54,6 +54,14 @@ func main() {
 		user.POST("/logout", controllers.LogoutUser)
 	}
 
+	//resource handlers
+	resource := r.Group("/resource")
+
+	{
+		resource.POST("/create", controllers.InsertResource)
+		resource.GET("/view", controllers.ViewResources)
+	}
+
 	port := "localhost:" + os.Getenv("PORT")
 
 	r.Run(port)
