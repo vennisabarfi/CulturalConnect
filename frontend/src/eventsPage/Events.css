@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 /* drop down menu for resources */
 .tabs {
     position: relative;
@@ -39,3 +45,4 @@
   .dropdown:hover .dropdown-menu {
     display: block;
   }
+

@@ -1,186 +1,31 @@
 .home-auto{
 margin:auto;
 }
-.search-title{
-    margin-right: 50px;
-    margin-top: 30px;
-    display:flex;
-    flex-direction:row;
-    align-items: center;
-    justify-content: center;
+
+/* home search  */
+
+.home-search{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   
 }
 
-.search-subtitle{
-    margin-right: 50px;
-    display:flex;
-    flex-direction:row;
-    align-items: center;
-    justify-content: center;
 
-}
-.business-name{
-    margin-bottom: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* work on css alignment when screen is adjusted  */
-/* Instead of fixed units like px, use flexible units such as %, vw, vh, em, rem. */
-.searchbox {
-    /* padding: 3em; */
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width:100%;
-
+.search-box input{
   
-}
 
-.search-input-1{
-    width: 20em;
-    justify-content: center;
-    position:relative;
-    font-size: 1.2em;
-    padding: 2%;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: none;
+  font-size: 17px;
  
 }
 
-.search-input-1 :focus{
-    color: #000;
-    border-color: #007BFF;
-    outline: none;
- 
+.search-icon{
+  
+  
 }
-
-
-.search-input-2{
-    width: 15em;
-    justify-content: center;
-    position:relative;
-    margin-left: 2px;
-    font-size: 1.2em;
-    padding: 2%;
-
-  
-    
- 
-}
-
-.search-input-2 :focus{
-    color: #000;
-    border-color: #007BFF;
-    outline: none;
- 
-}
-
-.search-button{
-    padding-left: none;
-    /* margin-left: -0.1px; */
-    
-    
-    
-}
-
-/* container for search results */
-.container{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap:20%; /* even spacing using grid-gap, You can use percentage values if you want*/
-    padding:20%;
-    display: flex;
-    flex-direction: row;
-}
-.hot-events{
-    margin-top: 5%;
-    align-items: left;
-    justify-content: left;
-    display: flex;
-    font-size: 3em;
-}
-
-/* search results */
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
-    gap: 20px; /* Space between items */
-    justify-items: center; /* Center items horizontally within each grid cell */
-    align-items: center; /* Center items vertically within each grid cell */
-    max-width: 1200px; /* Maximum width for the grid container */
-    margin: 0 auto; /* Center the grid container horizontally */
-    padding: 20px; /* Padding around the grid container */
-  }
-  
-  h2 {
-    margin: 0; /* Remove default margins from headings */
-  }
-  
-
-.top-results{
-  
-    display: grid; 
-    margin-bottom: 1.25rem; 
-    margin-top: 2.5rem; 
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    column-gap: 3.5rem; 
-    row-gap: 5rem; 
-    justify-content: center; 
-    justify-items: center; 
-    width: fit-content; 
-
-}
-
-.result{
-    border-radius: 0.75rem; 
-    width: 18rem; 
-    background-color: #ffffff; 
-    transition-duration: 500ms; 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
-
-}
-
-
-/* drop down menu for resources */
-.tabs {
-    position: relative;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-trigger {
-    cursor: pointer;
-  }
-  
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #f9f9f9;
-    width: 100%;  /* This makes the dropdown the same width as the tab */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-menu a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: center;  /* This centers the text in the dropdown items */
-  }
-  
-  .dropdown-menu a:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }

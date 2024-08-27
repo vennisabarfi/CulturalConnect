@@ -1,9 +1,8 @@
-import 'beercss'
+// import 'beercss'
 import './Resource.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
-
-
+import NavigationBar from '../components/NavigationBar';
 
 export default function Resource(){
     const [resources, setResources] = useState([]);
@@ -38,40 +37,9 @@ export default function Resource(){
 
     return(
         <>
-   <div className="tabs">
-  <a href="/">
-    <i>home</i>
-    <span>Home</span>
-  </a>
-  <a href="/events">
-    <i></i>
-    <span>Events</span>
-  </a>
-  <a className=" active dropdown" href="/resources" onClick={(e) => e.preventDefault()}>
-    <span className="dropdown-trigger">
-      <i></i>
-      <span>Resources</span>
-      <i></i>
-    </span>
-    <div className="dropdown-menu wrap">
-      <a href="#option1">Non-Profit Organizations</a>
-      <a href="#option2">Shelters</a>
-      <a href="#option3">Food Banks</a>
-    </div>
-  </a>
-  <a href="/contribute">
-    <i></i>
-    <span>Contribute</span>
-  </a>
-  <a href="/contact">
-    <i></i>
-    <span>Contact Us</span>
-  </a>
+   <NavigationBar/>
 
-</div>
-
-
-
+{/* 
 
 <article className='filter-area'>
     <span className='filter-text'>Filter</span>
@@ -87,16 +55,16 @@ export default function Resource(){
     <summary>Type</summary>
     <fieldset>
   <legend>Select one or more</legend>
-  <nav class="vertical">
-    <label class="checkbox">
+  <nav className="vertical">
+    <label className="checkbox">
       <input type="checkbox"/>
       <span>NGO</span>
     </label>
-    <label class="checkbox">
+    <label className="checkbox">
       <input type="checkbox"/>
       <span>Food Bank</span>
     </label>
-    <label class="checkbox">
+    <label className="checkbox">
       <input type="checkbox"/>
       <span>Shelter</span>
     </label>
@@ -108,16 +76,16 @@ export default function Resource(){
     <summary>Location</summary>
     <fieldset>
   <legend>Select one or more</legend>
-  <nav class="vertical">
-    <label class="checkbox">
+  <nav className="vertical">
+    <label className="checkbox">
       <input type="checkbox"/>
       <span>Downtown Cincinnati</span>
     </label>
-    <label class="checkbox">
+    <label className="checkbox">
       <input type="checkbox"/>
       <span>East</span>
     </label>
-    <label class="checkbox">
+    <label className="checkbox">
       <input type="checkbox"/>
       <span>West</span>
     </label>
@@ -125,22 +93,23 @@ export default function Resource(){
 </fieldset>
 </details>
 
-</article>
+</article> */}
 
-<h2>Resource List</h2>
+
 
   {serverMessage && <p className="server-message">{serverMessage}</p>}
   {serverErrors && <p className="server-error">{serverErrors}</p>}
 
   {/* unique key for items */}
-  
+  <h2>Resource List</h2>
      {resources.map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
-        <h1>{resource.org_name}</h1>
+        <img alt="organization-image" src={resource.display_image}></img>
+        <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
         <p>{resource.location}</p>
-        <p>Website: {resource.website}</p>
+        <a>Website: {resource.website}</a>
         </li>
         
       </ul>
@@ -152,4 +121,4 @@ export default function Resource(){
 
     );
 
-}
+} 
