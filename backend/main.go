@@ -68,6 +68,7 @@ func main() {
 	{
 		event.POST("/create", controllers.InsertEvent)
 		event.GET("/view", controllers.ViewEvent)
+		event.GET("/topview", controllers.ViewTopEvent) //view top event for home page
 	}
 	port := "localhost:" + os.Getenv("PORT")
 
