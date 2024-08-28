@@ -9,6 +9,9 @@
   font-size: 1.5em;
   width: 100%;
   font-family:'Roboto';
+  
+
+
 
   
 }
@@ -47,7 +50,7 @@
   margin: 0;
   /* remove box shadow if can't fix drop down shadow */
   /* box-shadow: 10px 10px 20px rgba(0,0,0,0.25);  */
-  background-color: #F5F5F5;
+  background-color: white;
   border: black;
 }
 

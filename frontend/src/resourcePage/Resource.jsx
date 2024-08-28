@@ -3,6 +3,7 @@ import './Resource.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
+import Footer from '../components/Footer';
 
 export default function Resource(){
     const [resources, setResources] = useState([]);
@@ -39,61 +40,6 @@ export default function Resource(){
         <>
    <NavigationBar/>
 
-{/* 
-
-<article className='filter-area'>
-    <span className='filter-text'>Filter</span>
-    <div className="space"></div>
-
-<span className='search-text'>Search</span>
-<div className="field medium prefix round fill">
-  <i className="front">search</i>
-  <input placeholder='Look up resources...'/>
-  
-</div>
-<details className='type-filter'>
-    <summary>Type</summary>
-    <fieldset>
-  <legend>Select one or more</legend>
-  <nav className="vertical">
-    <label className="checkbox">
-      <input type="checkbox"/>
-      <span>NGO</span>
-    </label>
-    <label className="checkbox">
-      <input type="checkbox"/>
-      <span>Food Bank</span>
-    </label>
-    <label className="checkbox">
-      <input type="checkbox"/>
-      <span>Shelter</span>
-    </label>
-  </nav>
-</fieldset>
-</details>
-
-<details className='type-filter'>
-    <summary>Location</summary>
-    <fieldset>
-  <legend>Select one or more</legend>
-  <nav className="vertical">
-    <label className="checkbox">
-      <input type="checkbox"/>
-      <span>Downtown Cincinnati</span>
-    </label>
-    <label className="checkbox">
-      <input type="checkbox"/>
-      <span>East</span>
-    </label>
-    <label className="checkbox">
-      <input type="checkbox"/>
-      <span>West</span>
-    </label>
-  </nav>
-</fieldset>
-</details>
-
-</article> */}
 
 
 
@@ -101,7 +47,11 @@ export default function Resource(){
   {serverErrors && <p className="server-error">{serverErrors}</p>}
 
   {/* unique key for items */}
-  <h2>Resource List</h2>
+  <div className='resource-header'>
+  <h4>Resource List</h4>
+  <hr/>
+  </div>
+  <div className='resource-results'>
      {resources.map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
@@ -115,6 +65,12 @@ export default function Resource(){
       </ul>
 
      ))}
+
+  </div>
+
+  {/* implement react-paginate for results. do the same for search results page */}
+
+     <footer><Footer/></footer>
 
 
        </>

@@ -1,80 +1,20 @@
-
-/* drop down menu for resources */
-.tabs {
-    position: relative;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-trigger {
-    cursor: pointer;
-  }
-  
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #f9f9f9;
-    width: 100%;  /* This makes the dropdown the same width as the tab */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-menu a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: center;  /* centers the text in dropdown */
-  }
-  
-  .dropdown-menu a:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-menu {
-    display: block;
+.resource-header{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.5em;
   }
 
-
-  /* filter area for resources */
-
-  .filter-text{
-    font-size: 1.8em;
-    margin-bottom: 10%;
-    text-align: center;
-    justify-content: center;
+  .resource-header hr{
+    max-width: 200px;
+    margin: 0px;
+    border:none;
+    height: 3px;
+    background-color:#DE3163;
+    margin-top: -30px;
   }
 
-  .search-text{
-    font-size: 1.2em;
+  .resource-results{
+    
+    
+    
+    
   }
-
-.filter-area{
-  margin-top: 5%;
-  margin-left: 1%;
-  float: left;
-  min-height: 100px;
-  width: 260px;
-  margin-bottom: 30%;
-  border: 1px solid black;
-  /* margin: 10px; */
-  align-items: left;
-}
-
-.type-filter{
-    font-size: larger;
-    margin-left: 5%;
-   
-}
-
-/* resources-list */
-
-.resources-list{
-  margin-left: 20%;
-
-}
