@@ -62,6 +62,13 @@ func main() {
 		resource.GET("/view", controllers.ViewResources)
 	}
 
+	//events handlers
+	event := r.Group("/event")
+
+	{
+		event.POST("/create", controllers.InsertEvent)
+		event.GET("/view", controllers.ViewEvent)
+	}
 	port := "localhost:" + os.Getenv("PORT")
 
 	r.Run(port)
