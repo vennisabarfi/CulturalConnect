@@ -1,8 +1,28 @@
 
+import { useState, useEffect } from 'react';
 import './NavigationBar.css'
 
-
 export default function NavigationBar(){
+  //set active tab 
+  const [activeTab, setActiveTab] = useState('');
+  
+  
+useEffect(function(){
+  const currentPath = window.location.pathname;
+  setActiveTab(currentPath);
+})
+
+const getActiveClass = function(path){
+  if (activeTab === path){
+    return 'active'
+  }
+  return '';
+}
+
+const handleTabClick = function(path){
+  setActiveTab(path);
+}
+
     return(
       <>
      <style>
@@ -11,10 +31,24 @@ export default function NavigationBar(){
 
     <nav className='nav-bar'>
       <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/events">Events</a></li>
+      <li>
+        <a 
+      href="/"  
+      onClick={() => handleTabClick('/')}
+      className={getActiveClass('/')}>
+        Home</a></li>
+      <li>
+      <a 
+      href="/events"  
+      onClick={() => handleTabClick('/events')}
+      className={getActiveClass('/events')}>
+      Events</a></li>
       <li id="drop-down">
-        <a href="/resources">Resources</a>
+       <a 
+      href="/resources"  
+      onClick={() => handleTabClick('/resources')}
+      className={getActiveClass('/resources')}>
+        Resources</a>
         {/* drop-down */}
         <ul id='drop-down-items'>
         <li><a href="#">Product 1</a></li>
@@ -24,8 +58,18 @@ export default function NavigationBar(){
         
         </li>
 
-      <li><a href="/contribute">Contribute</a></li>
-      <li><a href="/contribute">Contact Us</a></li>
+      <li>
+      <a 
+      href="/contribute"  
+      onClick={() => handleTabClick('/contribute')}
+      className={getActiveClass('/contribute')}>
+      Contribute</a></li>
+      <li>
+      <a 
+      href="/contact"  
+      onClick={() => handleTabClick('/contact')}
+      className={getActiveClass('/contact')}>
+        Contact Us</a></li>
       </ul>
     </nav>
  

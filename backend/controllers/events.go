@@ -1,14 +1,12 @@
 package controllers
 
 import (
-	"bytes"
 	"context"
 	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -175,61 +173,7 @@ func ViewTopEvent(c *gin.Context) {
 
 	defer pool.Close()
 
-	ctx := context.Background()
-
-	// begin transactions
-	tx, err := pool.BeginTx(ctx, nil)
-	if err != nil {
-		log.Fatal("Error initializing transaction", err)
-	}
-
-	//defer rollback in case stuff fails
-	defer tx.Rollback()
-
-	//retrieve number of rows in events table
-	query_1 := "SELECT COUNT(*) FROM events"
-	var count int
-
-	err = tx.QueryRow(query_1).Scan(&count) //uses ctx internally
-	if err != nil {
-		log.Fatal("Error retrieving number of rows: ", err)
-	}
-
-	fmt.Println("Number of rows: ", count)
-
-	//top three ids (recent) -- make this more efficient.
-	ID_1 := count
-	ID_2 := count - 1
-	ID_3 := count - 2
-
-	println("ID Numbers", ID_1, ID_2, ID_3)
-
-	//create a list of IDs
-	IDS := []int{ID_1, ID_2, ID_3}
-	fmt.Printf("%v", IDS)
-
-	//concatenate list of IDS to sql query
-	var buffer bytes.Buffer
-	//begin query
-	buffer.WriteString("SELECT * FROM events WHERE ID IN (")
-
-	//loop over IDS and append to buffer
-	for i, id := range IDS {
-		if i > 0 {
-			buffer.WriteString(",") //comma separator in array
-		}
-		buffer.WriteString(strconv.Itoa(id)) //convert string to int
-	}
-
-	//End of SQL query
-	buffer.WriteString(")")
-
-	// convert to string for database
-	query_2 := buffer.String()
-
-	fmt.Println(query_2)
-
-	rows, err := pool.Query(query_2) //uses ctx internally
+	rows, err := pool.Query("SELECT * FROM events ORDER BY created_at DESC LIMIT 3") //uses ctx internally
 	if err != nil {
 		print(err)
 	}
@@ -262,9 +206,5 @@ func ViewTopEvent(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{
 		"Top Events Found": events,
 	})
-
-	// c.IndentedJSON(http.StatusOK, gin.H{
-	// 	"Number of rows:": count,
-	// })
 
 }

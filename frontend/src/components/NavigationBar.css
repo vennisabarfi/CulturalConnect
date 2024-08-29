@@ -10,9 +10,6 @@
   width: 100%;
   font-family:'Roboto';
   
-
-
-
   
 }
 
@@ -28,6 +25,13 @@
   position: relative; /* This allows the dropdown to be positioned relative to its parent */
 }
 
+.nav-bar li :hover{
+   transform: translateY(5px);
+  /* you can remove the tranform part too */
+   opacity: 1; 
+   font-weight: bold;
+}
+
 .nav-bar a {
   text-decoration: none;
   padding: 15px 20px;
@@ -37,6 +41,12 @@
 .nav-bar a:visited {
  color: inherit;
 } 
+
+.nav-bar a.active {
+  background-color: #FAEBD7;
+  font-weight: bold;
+}
+
 
 #drop-down-items{
   display: none;
