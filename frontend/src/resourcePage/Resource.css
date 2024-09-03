@@ -12,8 +12,15 @@
     margin-top: -30px;
   }
 
-  .resource-results{
-    
-    
-    
-  }
+.resources-results{
+ padding-left: 10%;
+ padding-top: 10%;
+}
+
+ .resources-image{
+  width: 50%;
+ }
+
+ .resources-list li{
+  list-style-type: none;
+ }

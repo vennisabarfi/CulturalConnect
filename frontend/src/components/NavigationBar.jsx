@@ -23,6 +23,13 @@ const handleTabClick = function(path){
   setActiveTab(path);
 }
 
+// toggle menu for mobile devices
+function toggleMenu() {
+  const menu = document.getElementById('nav-menu');
+  menu.classList.toggle('show');
+}
+
+
     return(
       <>
      <style>
@@ -30,7 +37,8 @@ const handleTabClick = function(path){
 </style>
 
     <nav className='nav-bar'>
-      <ul>
+      <div className='hamburger' onClick={toggleMenu}>☰</div>
+      <ul id="nav-menu">
       <li>
         <a 
       href="/"  
@@ -43,6 +51,14 @@ const handleTabClick = function(path){
       onClick={() => handleTabClick('/events')}
       className={getActiveClass('/events')}>
       Events</a></li>
+
+      <li>
+      <a 
+      href="/media"  
+      onClick={() => handleTabClick('/media')}
+      className={getActiveClass('/media')}>
+      Media</a></li>
+
       <li id="drop-down">
        <a 
       href="/resources"  
@@ -58,18 +74,14 @@ const handleTabClick = function(path){
         
         </li>
 
+  
+
       <li>
       <a 
       href="/contribute"  
       onClick={() => handleTabClick('/contribute')}
       className={getActiveClass('/contribute')}>
-      Contribute</a></li>
-      <li>
-      <a 
-      href="/contact"  
-      onClick={() => handleTabClick('/contact')}
-      className={getActiveClass('/contact')}>
-        Contact Us</a></li>
+        Contribute</a></li>
       </ul>
     </nav>
  

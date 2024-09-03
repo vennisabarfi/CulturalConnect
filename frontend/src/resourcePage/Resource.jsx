@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
+import ngo_stock from "./ngo_stock.jpg"
 
 export default function Resource(){
     const [resources, setResources] = useState([]);
@@ -42,7 +43,7 @@ export default function Resource(){
 
 
 
-
+      {/* style this properly */}
   {serverMessage && <p className="server-message">{serverMessage}</p>}
   {serverErrors && <p className="server-error">{serverErrors}</p>}
 
@@ -51,11 +52,11 @@ export default function Resource(){
   <h4>Resource List</h4>
   <hr/>
   </div>
-  <div className='resource-results'>
+  <div className='resources-results'>
      {resources.map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
-        <img alt="organization-image" src={resource.display_image}></img>
+        <img className="resources-image" alt="organization-image" src={ngo_stock}></img>
         <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
         <p>{resource.location}</p>

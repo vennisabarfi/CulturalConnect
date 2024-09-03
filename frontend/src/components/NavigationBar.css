@@ -36,10 +36,12 @@
   text-decoration: none;
   padding: 15px 20px;
   display: block;
+  color: black;
 }
 
 .nav-bar a:visited {
- color: inherit;
+  text-decoration: none;
+  color: inherit;
 } 
 
 .nav-bar a.active {
@@ -76,4 +78,61 @@
   cursor:pointer; 
   
   
+}
+
+
+.hamburger {
+  display: none;
+}
+
+/* CSS for Mobile Screens */
+
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-end; /* Align the hamburger and menu to the right */
+  }
+
+  .nav-bar ul {
+    flex-direction: column;
+    display: none; /* Initially hide the menu */
+    width: 100%;
+    align-items: flex-end; /* Right-align the menu items */
+  }
+
+  .nav-bar ul.show {
+    display: flex;
+  }
+
+  .nav-bar li {
+    width: 100%;
+    text-align: left;
+  }
+
+  #drop-down-items {
+    position: static;
+    min-width: 100%;
+
+
+  }
+
+
+/* switch off hovering for mobile devices */
+  #drop-down:hover #drop-down-items {
+    display: none;
+  }
+
+  .nav-bar a {
+    padding: 15px;
+    width: 100%;
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin: 10px;
+    align-self: flex-end; /* Right-align the hamburger icon */
+  }
 }

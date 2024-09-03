@@ -6,6 +6,8 @@ export default function Events(){
     return(
         <>
   <NavigationBar/>
+
+  <h1>Hello</h1>
     
         </>
     );
