@@ -1,13 +1,31 @@
 /* checkbox section */
 
+.media-header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    
+    }
+  
+    .media-header hr{
+      max-width: 200px;
+      margin: 0px;
+      border:none;
+      height: 3px;
+      background-color:#DE3163;
+      margin-top: -30px;
+    }
+
 .media-checkbox{
- padding-top: 20px;
+ padding-top: 3%;
  width: 50%;
  height: 50%;
  display:flex;
  flex-direction: row;
  align-items: center;
  justify-content: center;
+ justify-content: space-evenly;
+padding-left: 20%;
+padding-right: 20%;
 
 }
 
@@ -17,14 +35,16 @@
     background-color:pink;
     border: 2px solid none;
     border-radius: 10px;
-    width: 5em;
-    height: 3em;
+    min-width: 7em;
+    min-height: 3em;
     /* center text */
     text-align: center;
     vertical-align: middle;
     line-height: 3em;
     text-decoration: none;
     font-size: 16px;
+    margin-right: 20px;
+    
    
    
 }
@@ -32,6 +52,9 @@
 .check-container:hover{
     cursor: pointer;
     background-color: #e24e67;
+    transform: translateY(-5px);
+    /* you can remove the tranform part too */
+     opacity: 1;  
 }
 
 /* hide checkbox icon */
@@ -47,6 +70,7 @@
     position: absolute;
     visibility: hidden;
     opacity: 0;
+ 
   }
 
 
@@ -54,11 +78,16 @@
 .checkbox-label{
     color: black;
     font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    /* text-wrap: wrap; */
+    overflow: hidden;
+    padding: 2%;
     
 }
 
 .checkbox-label:hover{
     cursor:pointer;
+
     
 }
 
@@ -67,8 +96,56 @@
 
 .checkbox-input:checked + .checkbox-label {
     /* color: #f00; */
-    font-weight: bold;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+
   
 }
 
 
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+
+    .media-header{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2em;
+        
+        }
+      
+        .media-header hr{
+          max-width: 150px;
+          margin: 0px;
+          border:none;
+          height: 3px;
+          background-color:#DE3163;
+          margin-top: -30px;
+          margin-bottom: 5%;
+        }
+
+
+    .media-checkbox {
+        flex-direction: row; /* Keep the checkboxes in a row */
+        flex-wrap: wrap; /* Allow wrapping to the next line */
+        justify-content: space-between; /* Distribute space evenly */
+        margin-left: 15%;
+        margin-right: 15%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .check-container {
+        flex-basis: 45%; 
+        /* Ensure three buttons per row */
+        max-width: 100%; /* Limit width to ensure three buttons fit */
+        min-width: unset; /* Remove minimum width to allow flexibility */
+        margin: 10px 0; /* Adjust margin for spacing */
+      
+    }
+
+    .checkbox-label {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        
+    }
+}
