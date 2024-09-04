@@ -1,6 +1,6 @@
 import NavigationBar from "../components/NavigationBar";
 import "./Media.css";
-import chosen_image from "./chosen-image.jpg";
+
 
 export default function Media(){
 
@@ -55,6 +55,7 @@ export default function Media(){
         <div className="media-header">
             <h4 >Media</h4>
             <hr/>
+       
         </div>
        
       
@@ -73,8 +74,9 @@ export default function Media(){
                 </div>
                   {/* Dropdown */}
                 <ul id="dropdown-items-1" className="dropdown-items">
-                    <li><a><img className="dropdown-image" src={chosen_image}></img> We're having gay sex</a></li>
-                    <li><a>Chosen Family Podcast</a></li>
+                    <li><a target="_blank" href="https://werehavinggaysex.com/"> We're having gay sex</a></li>
+                    <li><a target="_blank" href="https://chosenfamilypodcast.com/">Chosen Family Podcast</a></li>
+                    <li><a href="/podcasts">See More...</a></li>
                 </ul>
                 
                 
@@ -102,7 +104,9 @@ export default function Media(){
                 </div>
                   {/* Dropdown */}
                 <ul id="dropdown-items-2" className="dropdown-items">
-                    <li><a>map a</a></li>
+                    <li><a>Gay Movie</a></li>
+                    <li><a>Lesbian Movie</a></li>
+                    <li><a href="/movies">See More...</a></li>
                 </ul>
                 
                 
@@ -128,7 +132,9 @@ export default function Media(){
                 </div>
                   {/* Dropdown */}
                 <ul id="dropdown-items-3" className="dropdown-items">
-                    <li><a>map a</a></li>
+                    <li><a target="_blank" href="https://www.netflix.com/title/70242311">Orange is the New Black</a></li>
+                    <li><a target="_blank" href="https://www.disneyplus.com/series/glee/5h5XCwlaqNBK">Glee</a></li>
+                    <li><a href="shows">See More...</a></li>
                 </ul>
                 
                 
