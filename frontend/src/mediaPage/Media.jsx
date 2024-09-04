@@ -2,43 +2,36 @@ import NavigationBar from "../components/NavigationBar";
 import "./Media.css"
 export default function Media(){
 
+    // icon movement
+    function iconMovePodcast() {
+        const icon = document.getElementById('arrow-icon-1');
+        const dropdownMenu = document.getElementById('dropdown-items-1');
 
-    function checkboxColor() {
-        var checkboxes = document.querySelectorAll('.checkbox-input');
-    
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener("change", function() {
-                if (checkbox.checked) {
-                    // Uncheck all other checkboxes
-                    checkboxes.forEach(function(otherCheckbox) {
-                        if (otherCheckbox !== checkbox) {
-                            otherCheckbox.checked = false;
-                            // Update the background color of other containers
-                            const otherContainer = otherCheckbox.closest('.check-container');
-                            if (otherContainer) {
-                                otherContainer.style.backgroundColor = 'pink';
-                            }
-                        }
-                    });
-    
-                    // Update the background color of the current container
-                    const currentContainer = checkbox.closest('.check-container');
-                    if (currentContainer) {
-                        currentContainer.style.backgroundColor = "#e24e67"; // Color when checked
-                    }
-                } else {
-                    // If the checkbox is unchecked, set its container to default color
-                    const currentContainer = checkbox.closest('.check-container');
-                    if (currentContainer) {
-                        currentContainer.style.backgroundColor = 'pink'; // Default color
-                    }
-                }
-            });
-        });
+        if (icon.style.transform === 'rotate(90deg)'){
+                icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
+                dropdownMenu.style.display = 'none'; // hide dropdown menu
+        }else{
+            icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees
+            dropdownMenu.style.display = 'block'; // hide dropdown menu
+        }
+        
     }
-    
-    // Call the function to initialize event listeners
-    checkboxColor();
+
+    function iconMoveMovie() {
+        const icon = document.getElementById('arrow-icon-2');
+        const dropdownMenu = document.getElementById('dropdown-items-2');
+
+        if (icon.style.transform === 'rotate(90deg)'){
+                icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
+                dropdownMenu.style.display = 'none'; // hide dropdown menu
+        }else{
+            icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees
+            dropdownMenu.style.display = 'block'; // hide dropdown menu
+        }
+        
+    }
+
+   
     return(
 
         <>
@@ -47,46 +40,61 @@ export default function Media(){
             <h4 >Media</h4>
             <hr/>
         </div>
-        <div className="media-checkbox">
+       
+       <div className="media-container">
+        <nav>
+            <div className="media-section">
+                
+            <ul className="dropdown">
+                <div className="drop-section">
+                <li>
+                <svg onClick={iconMovePodcast} id="arrow-icon-1" className="arrow" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                
+                    <a> Podcasts</a>
+                    </li>
+                </div>
+                  {/* Dropdown */}
+                <ul id="dropdown-items-1" className="dropdown-items">
+                    <li><a>map a</a></li>
+                </ul>
+                
+                
+            </ul>
 
-            {/* PODCAST */}
-        <div className="check-container" id="change-color" onClick={checkboxColor}>
-        <input type="checkbox" className="checkbox-input" name="cb1" id="cb1"/>
-        <label className="checkbox-label" htmlFor="cb1">Podcasts</label>
-        </div>
+            
+            </div>
+           
+        </nav>
 
-        {/* MUSIC */}
-        <div className="check-container" id="change-color" onClick={checkboxColor}>
-        <input type="checkbox" className="checkbox-input" name="cb2" id="cb2"/>
-        <label className="checkbox-label" htmlFor="cb2">Music</label>
-        </div>  
+       </div>
 
-        {/* Social Media Content */}
-        <div className="check-container" id="change-color" onClick={checkboxColor}>
-        <input type="checkbox" className="checkbox-input" name="cb3" id="cb3"/>
-        <label className="checkbox-label" htmlFor="cb3">Social</label>
-        </div> 
 
-        {/* Movies */}
-        <div className="check-container" id="change-color" onClick={checkboxColor}>
-        <input type="checkbox" className="checkbox-input" name="cb4" id="cb4"/>
-        <label className="checkbox-label" htmlFor="cb4">Movies</label>
-        </div> 
+       <div className="media-container">
+        <nav>
+            <div className="media-section">
+                
+            <ul className="dropdown">
+                <div className="drop-section">
+                <li>
+                <svg onClick={iconMoveMovie} id="arrow-icon-2" className="arrow" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                
+                    <a> Movies</a>
+                    </li>
+                </div>
+                  {/* Dropdown */}
+                <ul id="dropdown-items-2" className="dropdown-items">
+                    <li><a>map a</a></li>
+                </ul>
+                
+                
+            </ul>
 
-        {/* Shows */}
-     
-        <div className="check-container" id="change-color" onClick={checkboxColor}>
-        <input type="checkbox" className="checkbox-input" name="cb5" id="cb5"/>
-        <label className="checkbox-label" htmlFor="cb5">Shows</label>
-        </div> 
+            
+            </div>
+           
+        </nav>
 
-        {/* People */}
-        <div className="check-container" id="change-color" onClick={checkboxColor}>
-        <input type="checkbox" className="checkbox-input" name="cb6" id="cb6"/>
-        <label className="checkbox-label" htmlFor="cb6">People</label>
-        </div> 
-
-        </div>
+       </div>
         </>
 
     );
