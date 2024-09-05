@@ -5,11 +5,15 @@ import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 import ngo_stock from "./ngo_stock.jpg"
+import Pagination from '../components/Pagination';
 
 export default function Resource(){
     const [resources, setResources] = useState([]);
     const [serverMessage, setServerMessage] = useState('');
     const [serverErrors, setServerErrors] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(10);
+
 
   useEffect(function(){
     async function fetchResourceData(){
@@ -35,6 +39,10 @@ export default function Resource(){
     fetchResourceData();
   }, []); 
 
+  //implement pagination
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = resources.slice(firstPostIndex, lastPostIndex);
  
 
     return(
@@ -53,19 +61,27 @@ export default function Resource(){
   <hr/>
   </div>
   <div className='resources-results'>
-     {resources.map((resource)=>(
+    {/* even though usually resources.map since we are paginating only want to show the limit of posts */}
+     {currentPosts.map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
         <img className="resources-image" alt="organization-image" src={ngo_stock}></img>
         <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
         <p>{resource.location}</p>
-        <a>Website: {resource.website}</a>
+        <a href={resource.website} target="_blank" rel="noopener noreferrer">Website: {resource.website}</a>
         </li>
         
       </ul>
 
      ))}
+     <Pagination
+      totalPosts={resources.length}
+      postsPerPage={postsPerPage}
+      setCurrentPage={setCurrentPage}
+      currentPage={currentPage}/>
+
+  
 
   </div>
 
