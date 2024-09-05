@@ -70,6 +70,14 @@ func main() {
 		event.GET("/view", controllers.ViewEvent)
 		event.GET("/view-top", controllers.ViewTopEvent) //view top event for home page
 	}
+
+	//media handlers
+	media := r.Group("/media")
+
+	{
+		media.POST("/create", controllers.InsertMedia)
+		media.GET("/view/:tag", controllers.ViewMediaByTag) //view media by tag
+	}
 	port := "localhost:" + os.Getenv("PORT")
 
 	r.Run(port)

@@ -91,6 +91,7 @@
   .nav-bar {
     flex-direction: column;
     align-items: flex-end; /* Align the hamburger and menu to the right */
+ 
   }
 
   .nav-bar ul {

@@ -1,0 +1,2 @@
+# culture_app/controllers
+controllers\media.go:109:26: cannot use ctx (variable of type context.Context) as string value in argument to pool.Query
