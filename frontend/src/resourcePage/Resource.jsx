@@ -5,15 +5,17 @@ import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 import ngo_stock from "./ngo_stock.jpg"
-import Pagination from '../components/Pagination';
+import ReactPaginate from 'react-paginate';
+// import Pagination from '../components/Pagination';
 
 export default function Resource(){
     const [resources, setResources] = useState([]);
     const [serverMessage, setServerMessage] = useState('');
     const [serverErrors, setServerErrors] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(10);
+    const [pageNumber, setPageNumber] = useState(0);
 
+    const resourcesPerPage = 10; //specify how much data to show per page
+    const pagesVisited = pageNumber * resourcesPerPage;
 
   useEffect(function(){
     async function fetchResourceData(){
@@ -39,11 +41,11 @@ export default function Resource(){
     fetchResourceData();
   }, []); 
 
-  //implement pagination
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = resources.slice(firstPostIndex, lastPostIndex);
- 
+  //pagination
+  const pageCount = Math.ceil(resources.length/resourcesPerPage)
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
     return(
         <>
@@ -61,29 +63,35 @@ export default function Resource(){
   <hr/>
   </div>
   <div className='resources-results'>
-    {/* even though usually resources.map since we are paginating only want to show the limit of posts */}
-     {currentPosts.map((resource)=>(
+    {/* even though usually resources.map since we are paginating only want to show the limit of */}
+     {resources.slice(pagesVisited, pagesVisited + resourcesPerPage).map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
         <img className="resources-image" alt="organization-image" src={ngo_stock}></img>
         <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
-        <p>{resource.location}</p>
-        <a href={resource.website} target="_blank" rel="noopener noreferrer">Website: {resource.website}</a>
+        <p className='resource-location'><svg className='location-icon' xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="30px" fill="#5f6368"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>{resource.location}</p>
+        <span> Website:<a href={resource.website} target="_blank" rel="noopener noreferrer"> {resource.website}</a> </span>
         </li>
         
       </ul>
 
      ))}
-     <Pagination
-      totalPosts={resources.length}
-      postsPerPage={postsPerPage}
-      setCurrentPage={setCurrentPage}
-      currentPage={currentPage}/>
+     <ReactPaginate
+       previousLabel={"Previous"}
+       nextLabel={"Next"}
+       pageCount={pageCount}
+       onPageChange={changePage}
+       containerClassName={"paginationBttns"}
+       previousLinkClassName={"previousBttn"}
+       nextLinkClassName={"nextBttn"}
+      //  disabledClassName={"paginationDisabled"} removed for now
+       activeClassName={"paginationActive"}
+     />
 
-  
 
   </div>
+
 
   {/* implement react-paginate for results. do the same for search results page */}
 

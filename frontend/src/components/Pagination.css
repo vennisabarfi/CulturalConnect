@@ -1,28 +1,52 @@
-.pagination {
+.App {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    margin-top: 1rem;
-}
-
-.pagination button {
-    width: 40px;
+    flex-direction: column;
+    width: 100vw;
+  }
+  
+  .user {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #b3e3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    margin: 20px;
+  }
+  
+  .paginationBttns {
+    width: 80%;
     height: 40px;
-    font-family: inherit;
-    font-weight: 600;
-    font-size: 16px;
-    margin: 0 10px;
-    border-radius: 6px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationBttns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid #2b2eff;
+    color: #2b2eff;
     cursor: pointer;
-    transition: all 0.3s ease;
-    background: transparent;
-    color: #eee;
-    border-color: #eee;
-}
-
-.pagination button.active {
-    font-weight: 900;
-    border-color: #101010;
-    background: #ffe400;
-    color: #101010;
-}
+  }
+  
+  .paginationBttns a:hover {
+    color: white;
+    background-color: #2b2eff;
+  }
+  
+  .paginationActive a {
+    color: white;
+    background-color: #2b2eff;
+  }
+  
+  .paginationDisabled a {
+    color: grey;
+    background-color: grey;
+  }
