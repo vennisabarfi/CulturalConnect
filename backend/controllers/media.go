@@ -59,7 +59,7 @@ func InsertMedia(c *gin.Context) {
 
 	ctx := context.Background()
 
-	query := "INSERT INTO media (name, display_image, website, description, tag) VALUES($1, $2, $3, $4, $5, $6) Returning ID"
+	query := "INSERT INTO media (name, display_image, website, description, tag) VALUES($1, $2, $3, $4, $5) Returning ID"
 
 	err = pool.QueryRowContext(ctx, query, media.Name, media.DisplayImage, media.Website, media.Description, media.Tag).Scan(&media.ID) //due to auto increment
 
@@ -83,6 +83,7 @@ func InsertMedia(c *gin.Context) {
 // view media by tag
 //
 //	link: http://localhost:3000/media/view/shows
+//can also filter podcasts and movies
 
 func ViewMediaByTag(c *gin.Context) {
 
