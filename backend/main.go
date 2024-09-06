@@ -78,6 +78,14 @@ func main() {
 		media.POST("/create", controllers.InsertMedia)
 		media.GET("/view/:tag", controllers.ViewMediaByTag) //view media by tag
 	}
+
+	//business handlers
+	business := r.Group("/business")
+
+	{
+		business.POST("/create", controllers.InsertBusiness)
+		business.GET("/view/:type", controllers.ViewBusinessByType) //view business by service type
+	}
 	port := "localhost:" + os.Getenv("PORT")
 
 	r.Run(port)

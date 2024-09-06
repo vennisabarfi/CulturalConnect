@@ -89,8 +89,10 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 400px;
-  margin-left: 30px;
-  padding: 2%;
+  margin-left: 15%;
+  /* padding: 2%; */
+  align-items: center;
+  justify-content: center;
   margin-bottom: 60px;
   
 }
@@ -237,7 +239,7 @@
 
 /* Home cards */
 .home-card-layout {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr; /* Single column layout for mobile */
   gap: 10px; /* Space between cards */
   padding: 5px;
@@ -247,10 +249,12 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 95%;
+  max-width: 500px;
   margin: 0; /* Remove margins for better spacing */
   padding: 10px;
   border-radius: 8px; /* Rounded corners */
-  background-color: #fff; /* Card background */
+  background-color:#fff; /* Card background */
+  margin-left: 2%;
 }
 
 .home-card:hover, .home-card:active{

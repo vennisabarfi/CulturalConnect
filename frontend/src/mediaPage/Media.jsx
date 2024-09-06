@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import NavigationBar from "../components/NavigationBar";
 import "./Media.css";
 
@@ -146,6 +147,9 @@ export default function Media(){
         </nav>
 
        </div>
+       <footer>
+        <Footer/>
+       </footer>
 
         </>
 
