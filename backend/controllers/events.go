@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-) 
+)
 
 type Events struct {
 	ID            int64          `json:"id"`
@@ -23,6 +23,8 @@ type Events struct {
 	Website       string         `json:"website"`
 	CreatedAt     string         `json: created_at`
 	DeletedAt     string         `json: deleted_at`
+	Type          string         `json: type`
+	TSV           string         `json:tsv` //tsv vector for search
 }
 
 // var pool *sql.DB
@@ -49,6 +51,8 @@ func InsertEvent(c *gin.Context) {
 		Date          string         `json:"date" binding:"required"`
 		Time          string         `json:"time" binding:"required"`
 		Website       string         `json:"website"`
+		Type          string         `json:"type"`
+		TSV           string         `json:"tsv"`
 	}
 
 	// if error with fields
@@ -69,6 +73,7 @@ func InsertEvent(c *gin.Context) {
 		Date:          body.Date,
 		Time:          body.Time,
 		Website:       body.Website,
+		Type:          body.Type,
 	}
 
 	//parse event date and time in correct format for postgres database
@@ -142,7 +147,7 @@ func ViewEvent(c *gin.Context) {
 			&event.OrganizerName, &event.Description,
 			&event.Location, &event.Date, &event.Time, &event.Website,
 			&event.CreatedAt,
-			&event.DeletedAt); err != nil {
+			&event.DeletedAt, &event.Type, &event.TSV); err != nil {
 			c.IndentedJSON(http.StatusBadRequest, gin.H{
 				"Error retrieving events": err,
 			})
@@ -189,7 +194,7 @@ func ViewTopEvent(c *gin.Context) {
 			&event.OrganizerName, &event.Description,
 			&event.Location, &event.Date, &event.Time, &event.Website,
 			&event.CreatedAt,
-			&event.DeletedAt); err != nil {
+			&event.DeletedAt, &event.Type, &event.TSV); err != nil {
 			c.IndentedJSON(http.StatusBadRequest, gin.H{
 				"Error retrieving events": err,
 			})
@@ -205,6 +210,94 @@ func ViewTopEvent(c *gin.Context) {
 	}
 	c.IndentedJSON(http.StatusOK, gin.H{
 		"Top Events Found": events,
+	})
+
+}
+
+// Search for events
+// search?query="hhhh"
+func SearchEvent(c *gin.Context) {
+	// should bind query
+
+	queryParam := c.DefaultQuery("query", "event") //change event to something more default
+
+	if err := c.ShouldBindQuery(queryParam); err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{
+			"message": "Error Binding Query",
+		})
+		return
+	}
+
+	//open database connection
+	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	if err != nil {
+		log.Fatal("Error opening database connection")
+	}
+
+	defer pool.Close()
+
+	ctx := context.Background()
+
+	var event Events
+
+	query := `SELECT 
+    id, 
+    display_image, 
+    organizer_name, 
+    ts_headline(description, q) AS description_headline, 
+    location, 
+    date, 
+    time, 
+    website, 
+    type, 
+    rank
+FROM (
+    SELECT
+        id, 
+        display_image, 
+        organizer_name, 
+        description, 
+        location, 
+        date, 
+        time, 
+        website, 
+        ts_rank(tsv, q) AS rank, 
+        type, 
+        q
+    FROM
+        events, websearch_to_tsquery('cinema') q
+    WHERE
+        tsv @@ q
+    ORDER BY
+        rank DESC
+    LIMIT 
+        10
+) AS subquery;`
+
+	row := pool.QueryRowContext(ctx, query, queryParam)
+
+	// map onto database
+	err = row.Scan(&event.ID, &event.DisplayImage,
+		&event.OrganizerName, &event.Description,
+		&event.Location, &event.Date, &event.Time, &event.Website,
+		&event.CreatedAt,
+		&event.DeletedAt, &event.Type, &event.TSV)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			c.IndentedJSON(http.StatusNotFound, gin.H{
+				"message": "No event found with this query",
+			})
+		} else {
+			log.Printf("Error scanning row: %v", err)
+			c.IndentedJSON(http.StatusInternalServerError, gin.H{
+				"error": "Error retrieving event",
+			})
+		}
+		return
+	}
+
+	c.IndentedJSON(http.StatusOK, gin.H{
+		"Event Found": event,
 	})
 
 }

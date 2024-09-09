@@ -69,6 +69,7 @@ func main() {
 		event.POST("/create", controllers.InsertEvent)
 		event.GET("/view", controllers.ViewEvent)
 		event.GET("/view-top", controllers.ViewTopEvent) //view top event for home page
+		event.GET("/search", controllers.SearchEvent)    //query search for events
 	}
 
 	//media handlers
