@@ -215,11 +215,11 @@ func ViewTopEvent(c *gin.Context) {
 }
 
 // Search for events
-// search?query="hhhh"
+// http://localhost:3000/event/search?query=pride%20in%20cincinnati
 func SearchEvent(c *gin.Context) {
 	// should bind query
 
-	queryParam := c.DefaultQuery("query", "event") //change event to something more default
+	queryParam := c.Query("query") //change event to something more default
 
 	if err := c.ShouldBindQuery(queryParam); err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{
@@ -265,7 +265,7 @@ FROM (
         type, 
         q
     FROM
-        events, websearch_to_tsquery('cinema') q
+        events, websearch_to_tsquery('` + queryParam + `') q
     WHERE
         tsv @@ q
     ORDER BY
@@ -273,15 +273,15 @@ FROM (
     LIMIT 
         10
 ) AS subquery;`
+	fmt.Println(query)
 
-	row := pool.QueryRowContext(ctx, query, queryParam)
+	row := pool.QueryRowContext(ctx, query)
 
 	// map onto database
 	err = row.Scan(&event.ID, &event.DisplayImage,
 		&event.OrganizerName, &event.Description,
 		&event.Location, &event.Date, &event.Time, &event.Website,
-		&event.CreatedAt,
-		&event.DeletedAt, &event.Type, &event.TSV)
+		&event.TSV, &event.Type)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			c.IndentedJSON(http.StatusNotFound, gin.H{
