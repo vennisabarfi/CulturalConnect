@@ -105,6 +105,52 @@ WITH events_query AS (
     LIMIT 
         10
 ),
+media_query AS (
+    SELECT
+        id, 
+        name,
+        display_image,  
+        ts_headline(description, q) AS description_headline, 
+        website,
+        description,
+        tag, 
+        NULL::text AS date,  -- Explicitly cast NULL to text
+        NULL::text AS date_2,  -- Explicitly cast NULL to text
+        NULL::text AS time,  -- Explicitly cast NULL to text
+        NULL::text AS time_2,  -- Explicitly cast NULL to text
+        ts_rank(tsv, q) AS rank,
+    FROM
+        media, websearch_to_tsquery('rescue') q
+    WHERE
+        tsv @@ q
+    ORDER BY
+        ts_rank(tsv, q) DESC
+    LIMIT 
+        10
+),
+businesses_query AS (
+    SELECT
+        id, 
+        display_image,  
+        business_name,
+        ts_headline(description, q) AS description_headline, 
+        location,
+        website,
+        service_type,
+        email, 
+        phone_number,
+        NULL::text AS date,  -- Explicitly cast NULL to text
+        NULL::text AS time,  -- Explicitly cast NULL to text
+        ts_rank(tsv, q) AS rank,
+    FROM
+        businesses, websearch_to_tsquery('rescue') q
+    WHERE
+        tsv @@ q
+    ORDER BY
+        ts_rank(tsv, q) DESC
+    LIMIT 
+        10
+),
 resources_query AS (
     SELECT
         id, 
@@ -131,7 +177,118 @@ resources_query AS (
 SELECT * FROM (
     SELECT * FROM events_query
     UNION ALL
+    SELECT * FROM media_query
+    UNION ALL
+    SELECT * FROM businesses_query
+    UNION ALL
     SELECT * FROM resources_query
 ) combined_results
 ORDER BY rank DESC
+LIMIT 10;
+
+
+### Full Query - Note explicitly casting as text to avoid errors
+
+WITH events_query AS (
+    SELECT
+        id, 
+        display_image::text, 
+        organizer_name, 
+        ts_headline(description, q) AS description_headline, 
+        location, 
+        date::text AS date,
+        time::text AS time,
+        website, 
+        type,
+        ts_rank(tsv, q)::text AS rank,
+        NULL AS email,
+        NULL AS phone_number
+    FROM
+        events, websearch_to_tsquery('rescue') q
+    WHERE
+        tsv @@ q
+    ORDER BY
+        ts_rank(tsv, q) DESC
+    LIMIT 
+        10
+),
+media_query AS (
+    SELECT
+        id, 
+        name,
+        display_image::text,  
+        ts_headline(description, q) AS description_headline, 
+        website,
+        description,
+        tag, 
+        NULL::text AS date,
+        NULL::text AS date_2,
+        NULL::text AS time,
+        NULL::text AS time_2,
+        ts_rank(tsv, q)::text AS rank
+    FROM
+        media, websearch_to_tsquery('rescue') q
+    WHERE
+        tsv @@ q
+    ORDER BY
+        ts_rank(tsv, q) DESC
+    LIMIT 
+        10
+),
+businesses_query AS (
+    SELECT
+        id, 
+        display_image::text,  
+        business_name,
+        ts_headline(description, q) AS description_headline, 
+        location,
+        website,
+        service_type,
+        email, 
+        phone_number,
+        NULL::text AS date,
+        NULL::text AS time,
+        ts_rank(tsv, q)::text AS rank
+    FROM
+        businesses, websearch_to_tsquery('rescue') q
+    WHERE
+        tsv @@ q
+    ORDER BY
+        ts_rank(tsv, q) DESC
+    LIMIT 
+        10
+),
+resources_query AS (
+    SELECT
+        id, 
+        display_image::text, 
+        org_name AS organizer_name, 
+        ts_headline(description, q) AS description_headline, 
+        location, 
+        NULL::text AS date,
+        NULL::text AS time,
+        website, 
+        type,
+        ts_rank(tsv, q)::text AS rank,
+        email,
+        phone_number
+    FROM
+        resources, websearch_to_tsquery('rescue') q
+    WHERE
+        tsv @@ q
+    ORDER BY
+        ts_rank(tsv, q) DESC
+    LIMIT 
+        10
+)
+SELECT * FROM (
+    SELECT * FROM events_query
+    UNION ALL
+    SELECT * FROM media_query
+    UNION ALL
+    SELECT * FROM businesses_query
+    UNION ALL
+    SELECT * FROM resources_query
+) combined_results
+ORDER BY rank::real DESC
 LIMIT 10;
