@@ -18,6 +18,7 @@ type Media struct {
 	Website      string         `json:"website"`
 	Description  string         `json:"description"`
 	Tag          string         `json:"tag"`
+	TSV          string         `json:"tsv"`
 	CreatedAt    string         `json: created_at`
 	DeletedAt    string         `json: deleted_at`
 }
@@ -29,6 +30,7 @@ func InsertMedia(c *gin.Context) {
 		Website      string         `json:"website" binding:"required"`
 		Description  string         `json:"description" binding:"required"`
 		Tag          string         `json:"tag" binding:"required"`
+		TSV          string         `json:"tsv"`
 	}
 
 	// if error with fields
@@ -47,6 +49,7 @@ func InsertMedia(c *gin.Context) {
 		Website:      body.Website,
 		Description:  body.Description,
 		Tag:          body.Tag,
+		TSV:          body.TSV,
 	}
 
 	//open database connection
@@ -61,7 +64,7 @@ func InsertMedia(c *gin.Context) {
 
 	query := "INSERT INTO media (name, display_image, website, description, tag) VALUES($1, $2, $3, $4, $5) Returning ID"
 
-	err = pool.QueryRowContext(ctx, query, media.Name, media.DisplayImage, media.Website, media.Description, media.Tag).Scan(&media.ID) //due to auto increment
+	err = pool.QueryRowContext(ctx, query, media.Name, media.DisplayImage, media.Website, media.Description, media.Tag, media.TSV).Scan(&media.ID) //due to auto increment
 
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{
@@ -122,7 +125,7 @@ func ViewMediaByTag(c *gin.Context) {
 		var media Media
 		if err := rows.Scan(&media.ID, &media.Name, &media.DisplayImage,
 			&media.Website, &media.Description,
-			&media.Tag, &media.CreatedAt,
+			&media.Tag, &media.TSV, &media.CreatedAt,
 			&media.DeletedAt); err != nil {
 			c.IndentedJSON(http.StatusBadRequest, gin.H{
 				"Error retrieving medias": err,

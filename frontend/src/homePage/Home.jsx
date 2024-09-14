@@ -11,14 +11,37 @@ import { useState, useEffect } from "react";
 export default function Home(){
 
   const [events, setEvents] = useState([]);
+  const [query, setQuery] = useState('');
   const [eventServerMessage, setEventServerMessage] = useState('');
   const [eventServerErrors, setEventServerErrors] = useState('');
    
-    const handleSearchSubmit = function(){
+  
+  // handling form data with query
+  const handleSubmit = async function(event){
+    event.preventDefault();
 
+    try {
+      const response = await axios.get(`http://localhost:3000/home/search?query=${encodeURIComponent(query)}`);
+      setEvents(response.data["Results Found"])
+
+      if (response.status === 200) {
+
+        setEventServerMessage(response.data.message)
+        console.log(response.data)
+        
+        
+    }
+    } catch (error) {
+      // add functionality to redirect to error page (404 page)
+      setEventServerErrors(error.response.data.message)
+          
+          console.log(`Error retrieving resources information: ${error.response.data.message}`)
     }
 
-    useEffect(function(){
+  }
+
+    // handle event top data
+   useEffect(function(){
       async function fetchEventTopData(){
         try {
           const response = await axios.get('http://localhost:3000/event/view-top');
@@ -62,10 +85,10 @@ export default function Home(){
 
 <div className="home-search">
   {/* <label className="search-label">Search Here</label> */}
-  <form onSubmit={handleSearchSubmit}>
-    <input className="search-box search-icon" placeholder="Business, Event..." type="text"></input>
+  <form onSubmit={handleSubmit}>
+    <input className="search-box search-icon" type="text" value={query}  onChange={(e) => setQuery(e.target.value)}  placeholder="Business, Event..." ></input>
     {/* <input type="submit" value="Search"></input> */}
-    <button className="search-button" type="button" >Search</button>
+    <button className="search-button" type="submit" >Search</button>
   </form>
  
 </div>

@@ -74,6 +74,7 @@ func InsertEvent(c *gin.Context) {
 		Time:          body.Time,
 		Website:       body.Website,
 		Type:          body.Type,
+		TSV:           body.TSV,
 	}
 
 	//parse event date and time in correct format for postgres database
