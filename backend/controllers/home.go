@@ -55,8 +55,6 @@ func HomeSearch(c *gin.Context) {
 
 	// ctx := context.Background()
 
-	var result Results
-
 	query := `WITH events_query AS (
     SELECT
         id,
@@ -175,40 +173,49 @@ LIMIT 10;
 `
 	fmt.Println(query)
 
-	row := pool.QueryRow(query)
+	rows, err := pool.Query(query) //uses ctx internally
+
+	if err != nil {
+		print(err)
+	}
+	defer rows.Close()
+
+	//initialize array of resources
+	var results []Results
 
 	// map onto database
-	err = row.Scan(
-		&result.ID,
-		&result.DisplayImage,
-		&result.OrganizerName,
-		&result.DescriptionHeadline,
-		&result.Location,
-		&result.Date,
-		&result.Time,
-		&result.Website,
-		&result.Type,
-		&result.Rank,
-		&result.Email,
-		&result.PhoneNumber,
-		&result.Name,
-		&result.Tag,
-		&result.ServiceType)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			c.IndentedJSON(http.StatusNotFound, gin.H{
-				"message": "No results found with this query",
+	for rows.Next() {
+		var result Results
+		if err := rows.Scan(
+			&result.ID,
+			&result.DisplayImage,
+			&result.OrganizerName,
+			&result.DescriptionHeadline,
+			&result.Location,
+			&result.Date,
+			&result.Time,
+			&result.Website,
+			&result.Type,
+			&result.Rank,
+			&result.Email,
+			&result.PhoneNumber,
+			&result.Name,
+			&result.Tag,
+			&result.ServiceType); err != nil {
+			c.IndentedJSON(http.StatusBadRequest, gin.H{
+				"Error retrieving results": err,
 			})
-		} else {
-			log.Printf("Error scanning row: %v", err)
-			c.IndentedJSON(http.StatusInternalServerError, gin.H{
-				"error": "Error retrieving result",
-			})
+			log.Print("Error retrieving results from database", err)
+			return
 		}
-		return
+		results = append(results, result)
 	}
-
+	if err == sql.ErrNoRows {
+		c.IndentedJSON(http.StatusNotFound, gin.H{
+			"message": "No results found",
+		})
+	}
 	c.IndentedJSON(http.StatusOK, gin.H{
-		"Result Found": result,
+		"Results Found": results,
 	})
 }
