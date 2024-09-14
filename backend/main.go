@@ -42,9 +42,15 @@ func main() {
 
 	defer pool.Close()
 
-	r.GET("/home", func(c *gin.Context) {
-		c.String(200, "Welcome to the Culture Connect API")
-	})
+	// r.GET("/home", func(c *gin.Context) {
+	// 	c.String(200, "Welcome to the Culture Connect API")
+	// })
+
+	// home handlers
+	home := r.Group("/home")
+	{
+		home.GET("/search", controllers.HomeSearch) //main home search
+	}
 
 	// user handlers
 	user := r.Group("/user-auth")
