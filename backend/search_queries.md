@@ -292,3 +292,9 @@ SELECT * FROM (
 ) combined_results
 ORDER BY rank::real DESC
 LIMIT 10;
+
+
+
+### Review this code:
+
+-  Main App Component
