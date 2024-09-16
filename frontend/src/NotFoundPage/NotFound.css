@@ -1,0 +1,37 @@
+/* not found search page */
+/* mobile view */
+
+    .not-found-header{
+        font-family: Arial, Helvetica, sans-serif;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        margin-top: 5%;
+        
+    }
+    
+    .not-found-header h1{
+        font-size: 2.5em;
+    }
+
+    .not-found-header a{
+        text-decoration: none;
+        font-size: larger;
+        color: #DE3163;
+    }
+
+    .not-found-header a:visited{
+        text-decoration: none;
+        color: #DE3163;
+    }
+    .not-found-header a:hover{
+        text-decoration: underline;
+        cursor: pointer;
+       
+    }
+
+
+
+
+
+

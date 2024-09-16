@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import axios from "axios";
 import './Search.css'
 import NavigationBar from "../components/NavigationBar";
@@ -14,23 +14,7 @@ export default function Search() {
   // Get current location and query from URL
   const query = new URLSearchParams(location.search).get('query');
 
-  // Render <b> tag from backend using regex
-  // eslint-disable-next-line react/prop-types
-  function SafeHighlight({ text }) {
-    // eslint-disable-next-line react/prop-types
-    const parts = text.split(/(<b>.*?<\/b>)/);
-    return (
-      <span>
-        {parts.map(function (part, index) {
-          if (part.startsWith('<b>') && part.endsWith('</b>')) {
-            const highlightedText = part.slice(3, -4);
-            return <b key={index}>{highlightedText}</b>;
-          }
-          return part;
-        })}
-      </span>
-    );
-  }
+  
 
   // Fetch search results
   useEffect(function () {
@@ -40,15 +24,22 @@ export default function Search() {
           .then(function (response) {
             setSearchResults(response.data["Results Found"]);
 
-            if (response.status === 200) {
+            if(response.data["Results Found"]=== null){
+                window.location.replace("/search-404");
+               
+            }if (response.status === 200) {
               setEventServerMessage(response.data.message);
               console.log(response.data);
-              // window.location.href = "/resources" // map this from results
+         
+            }
+            if(response.status != 200){
+            
+          
+                window.location.replace("/404");
             }
           })
           .catch(function (error) {
-            // Add functionality to redirect to error page (404 page)
-            // 404 page should be window.location.href = "/404"
+           
             setEventServerErrors(error.response.data.message);
             console.log(`Error retrieving resources information: ${error.response.data.message}`);
           });
@@ -62,16 +53,18 @@ export default function Search() {
     <>
     <NavigationBar/>
     
-    <div>
+    
+
         <div className="search-header">
         <h2>Search Results</h2>
-        <p>Found {searchResults.length} result(s)</p>
-        <a href="/"> Go back</a>
+        <p> <b>{searchResults.length}</b> Result(s) for <b>"{query}"</b></p>
+      
         </div>
      
       {eventServerMessage && <p className="server-message">{eventServerMessage}</p>}
     {eventServerErrors && <p className="server-error">{eventServerErrors}</p>}
 
+    <div className="search-results"> 
       {searchResults.map(function (result) {
         
         return (
@@ -81,22 +74,24 @@ export default function Search() {
               <h3>{result.organizer_name}</h3>
               <h3>{result.name}</h3>
               {/* <img>{result.display_image}</img> */}
-              <p>
-                Description: <SafeHighlight text={result.description_headline} />
-              </p>
+             <p>{result.description.substring(0,250)}..</p>
               <p>{result.location}</p>
               <h4>Contact Information</h4>
               <a href={result.website}>{result.website}</a>
               <p>{result.phone_number}</p>
               <p>{result.email}</p>
-         
-              {/* re-route see more to specific webpage work on this */}
             </div>
    
           </div>
         );
       })}
-    </div>
+      </div>
+
+      <div className="home-router">
+      <a href="/"> Go back</a>
+      </div>
+
+   
 
     <footer>
 <Footer/>

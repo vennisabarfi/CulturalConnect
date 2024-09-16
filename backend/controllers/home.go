@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -16,6 +15,7 @@ type Results struct {
 	DisplayImage        sql.NullString `json:"display_image"`
 	OrganizerName       *string        `json:"organizer_name,omitempty"`
 	Name                *string        `json:"name,omitempty"` // For media and businesses
+	Description         *string        `json:"description,omitempty"`
 	DescriptionHeadline *string        `json:"description_headline,omitempty"`
 	Location            *string        `json:"location,omitempty"`
 	Date                *string        `json:"date,omitempty"`
@@ -60,6 +60,7 @@ func HomeSearch(c *gin.Context) {
         id,
         display_image::text,
         organizer_name,
+        description,
         ts_headline(description, q) AS description_headline,       
         location,
         date::text AS date,
@@ -86,6 +87,7 @@ media_query AS (
         id,
         display_image::text,
         NULL::text AS organizer_name,
+        description,
         ts_headline(description, q) AS description_headline,       
         NULL::text AS location,
         NULL::text AS date,
@@ -112,6 +114,7 @@ businesses_query AS (
         id,
         display_image::text,
         NULL::text AS organizer_name,
+        description,
         ts_headline(description, q) AS description_headline,       
         location,
         NULL::text AS date,
@@ -138,6 +141,7 @@ resources_query AS (
         id,
         display_image::text,
         org_name AS organizer_name,
+        description,
         ts_headline(description, q) AS description_headline,       
         location,
         NULL::text AS date,
@@ -171,7 +175,7 @@ SELECT * FROM (
 ORDER BY rank::real DESC
 LIMIT 10;
 `
-	fmt.Println(query)
+	// fmt.Println(query)
 
 	rows, err := pool.Query(query) //uses ctx internally
 
@@ -190,6 +194,7 @@ LIMIT 10;
 			&result.ID,
 			&result.DisplayImage,
 			&result.OrganizerName,
+			&result.Description,
 			&result.DescriptionHeadline,
 			&result.Location,
 			&result.Date,

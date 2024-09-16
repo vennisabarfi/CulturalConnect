@@ -7,6 +7,8 @@ import Events from "./eventsPage/Events";
 import Resource from "./resourcePage/Resource";
 import Media from "./mediaPage/Media";
 import Search from "./searchPage/Search";
+import NotFound from "./NotFoundPage/NotFound"
+import NotFoundSearch from "./NotFoundPage/NotFoundSearch";
 
 function App() {
  
@@ -22,6 +24,8 @@ function App() {
           <Route path="/resources" element={<Resource />} />
           <Route path="/media" element={<Media />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="/search-404" element={<NotFoundSearch />} />
           
         </Routes>
       </BrowserRouter>
