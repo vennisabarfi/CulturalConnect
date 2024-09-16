@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import './Search.css'
+import NavigationBar from "../components/NavigationBar";
+import Footer from "../components/Footer";
 
 export default function Search() {
   const [searchResults, setSearchResults] = useState([]);
@@ -12,7 +15,9 @@ export default function Search() {
   const query = new URLSearchParams(location.search).get('query');
 
   // Render <b> tag from backend using regex
+  // eslint-disable-next-line react/prop-types
   function SafeHighlight({ text }) {
+    // eslint-disable-next-line react/prop-types
     const parts = text.split(/(<b>.*?<\/b>)/);
     return (
       <span>
@@ -31,8 +36,7 @@ export default function Search() {
   useEffect(function () {
     if (query) {
       try {
-        axios
-          .get(`http://localhost:3000/home/search?query=${encodeURIComponent(query)}`)
+        axios.get(`http://localhost:3000/home/search?query=${encodeURIComponent(query)}`)
           .then(function (response) {
             setSearchResults(response.data["Results Found"]);
 
@@ -55,29 +59,49 @@ export default function Search() {
   }, [query]);
 
   return (
+    <>
+    <NavigationBar/>
     
     <div>
-      <h4>Search Results</h4>
+        <div className="search-header">
+        <h2>Search Results</h2>
+        <p>Found {searchResults.length} result(s)</p>
+        <a href="/"> Go back</a>
+        </div>
+     
       {eventServerMessage && <p className="server-message">{eventServerMessage}</p>}
     {eventServerErrors && <p className="server-error">{eventServerErrors}</p>}
-    
+
       {searchResults.map(function (result) {
+        
         return (
-          <div key={result.id} className="home-card">
-            <div className="home-container">
-              <h4>{result.organizer_name}</h4>
-              <h4>{result.name}</h4>
+          <div key={result.id} className="search-card">
+           
+            <div className="search-container">
+              <h3>{result.organizer_name}</h3>
+              <h3>{result.name}</h3>
+              {/* <img>{result.display_image}</img> */}
               <p>
-                <SafeHighlight text={result.description_headline} />
+                Description: <SafeHighlight text={result.description_headline} />
               </p>
               <p>{result.location}</p>
+              <h4>Contact Information</h4>
+              <a href={result.website}>{result.website}</a>
+              <p>{result.phone_number}</p>
+              <p>{result.email}</p>
+         
               {/* re-route see more to specific webpage work on this */}
             </div>
+   
           </div>
         );
       })}
     </div>
 
-    
+    <footer>
+<Footer/>
+</footer>
+
+    </>
   );
 }
