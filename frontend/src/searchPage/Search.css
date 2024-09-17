@@ -1,7 +1,4 @@
-.search-layout{
-   
-    
-}
+
 
 .search-header{
     font-family: Arial, Helvetica, sans-serif;
@@ -31,6 +28,7 @@
     justify-content: center;
     text-decoration: none;
     color: #DE3163;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .home-router a:link{
@@ -51,10 +49,9 @@
 .search-card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 400px;
-  
-    /* padding: 2%; */
+    width: 800px;
     align-items: center;
+    margin-left: 10%;
     justify-content: center;
     margin-bottom: 60px;
     font-family: Arial, Helvetica, sans-serif;
@@ -69,16 +66,80 @@
      opacity: 1; 
   }
   
-  .search-card h4{
-    font-family: Arial, Helvetica, sans-serif;
+/* Main mapping area */
+  .search-container{
+    padding: 2px 16px;
+    padding-bottom: 5%;
+  }
+
+  /* work on colors */
+  .search-container h3{
     font-size: 1.5em;
+    color: #586994;
+
   }
   
-  .search-card p{
-    font-family: Arial, Helvetica, sans-serif;
+  .search-container p{
     overflow: hidden; 
     /* hidden the overflow for long text */
   }
-  .search-container{
-    padding: 2px 16px;
+
+  .search-container a{
+    text-decoration: none;
+    color: #DE3163;
+    /* color: #6e69fd; */
   }
+
+
+  .search-container a:visited{
+    text-decoration: none;
+    color: #DE3163;
+     /* color: #6e69fd; */
+
+  }
+
+  .search-container a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+ .description{
+  margin-bottom: 5%;
+ }
+
+ .location{
+  color:#DE3163;
+
+
+ }
+
+ .contact{
+
+ }
+  .search-image{
+   max-width: 50%;
+   /* work on max width for different images */
+    
+  }
+  
+
+
+/* Mobile responsive */
+@media only screen and (max-width: 768px){
+    .search-card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 350px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 60px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-right: 10%;
+        margin-left: 2%;
+        
+      }
+
+
+
+ 
+}

@@ -190,6 +190,7 @@ LIMIT 10;
 	// map onto database
 	for rows.Next() {
 		var result Results
+
 		if err := rows.Scan(
 			&result.ID,
 			&result.DisplayImage,
@@ -214,12 +215,14 @@ LIMIT 10;
 			return
 		}
 		results = append(results, result)
+
 	}
 	if err == sql.ErrNoRows {
 		c.IndentedJSON(http.StatusNotFound, gin.H{
 			"message": "No results found",
 		})
 	}
+
 	c.IndentedJSON(http.StatusOK, gin.H{
 		"Results Found": results,
 	})

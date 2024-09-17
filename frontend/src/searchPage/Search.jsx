@@ -4,6 +4,7 @@ import axios from "axios";
 import './Search.css'
 import NavigationBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
+import cincinnati_stock from "./cincinnati-stock.jpg"
 
 export default function Search() {
   const [searchResults, setSearchResults] = useState([]);
@@ -14,7 +15,12 @@ export default function Search() {
   // Get current location and query from URL
   const query = new URLSearchParams(location.search).get('query');
 
-  
+  //default image for mapping fails
+const DefaultImage = function(e){
+    e.target.src= cincinnati_stock;
+}
+
+
 
   // Fetch search results
   useEffect(function () {
@@ -57,7 +63,7 @@ export default function Search() {
 
         <div className="search-header">
         <h2>Search Results</h2>
-        <p> <b>{searchResults.length}</b> Result(s) for <b>"{query}"</b></p>
+        <p> <b>{searchResults.length}</b> Result(s) for <b> "{query}"</b></p>
       
         </div>
      
@@ -71,15 +77,21 @@ export default function Search() {
           <div key={result.id} className="search-card">
            
             <div className="search-container">
+            <img className="search-image" alt="search-result image" src={result.display_image} onError={DefaultImage} /> 
               <h3>{result.organizer_name}</h3>
               <h3>{result.name}</h3>
-              {/* <img>{result.display_image}</img> */}
-             <p>{result.description.substring(0,250)}..</p>
-              <p>{result.location}</p>
-              <h4>Contact Information</h4>
-              <a href={result.website}>{result.website}</a>
-              <p>{result.phone_number}</p>
-              <p>{result.email}</p>
+              <p className="description">{result.description.substring(0,400)}..</p>
+
+              {/* location */}
+              {result.location && <span className="location" ><svg className='location-icon' xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="30px" fill="#5f6368"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>Address: <a target="_blank" href="http://maps.google.com/?q=">{result.location}</a></span>}
+              <h3>Contact Information</h3>
+    
+                {/* Solve rendering results later */}
+                { result.website && <a rel="noopener noreferrer" href={result.website}> View Listing</a>}
+                {result.email && <p className="contact">Email: <a href={`mailto: ${result.email}`}>{result.email}</a></p>}
+                {result.phone_number && <p className="contact">Phone Number: {result.phone_number}</p>}
+                
+         
             </div>
    
           </div>
