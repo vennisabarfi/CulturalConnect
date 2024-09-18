@@ -15,6 +15,10 @@ export default function Resource(){
     const [pageNumber, setPageNumber] = useState(0);
     const[filter, setFilter] = useState('');
     const [checked, setChecked] = useState(new Set()); //using a set so you can filter multiple items, else use ''
+    const [debouncedFilter, setDebouncedFilter] = useState(filter); //debouncing results
+
+
+    
 
     //filter by organization name or location. add input debouncing to avoid crashes
     const filteredResources = resources.filter((resource)=>{
@@ -82,9 +86,19 @@ export default function Resource(){
     setPageNumber(selected);
   };
 
-  //filter handlers
+  // Debounce effect: Update `debouncedFilter` after a delay when `filter` changes
+  useEffect(function(){
+    const handler = setTimeout(() => {
+      setDebouncedFilter(filter); // Only update after the delay
+    }, 500); // 500ms delay
 
+    // Cleanup the timeout if the component is re-rendered before the timeout completes
+    return function(){
+      clearTimeout(handler);
+    };
+  }, [filter]); // The effect runs every time `filter` changes
 
+console.log(debouncedFilter); //to test
   
 
     return(
@@ -110,7 +124,7 @@ export default function Resource(){
         <img className="resources-image" alt="organization-image" src={ngo_stock}></img>
         <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
-        <p>{resource.type}</p>
+        <p>Type: {resource.type}</p>
         <p className='resource-location'><svg className='location-icon' xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="30px" fill="#5f6368"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>{resource.location}</p>
         <span> Website:<a href={resource.website} target="_blank" rel="noopener noreferrer"> {resource.website}</a> </span>
         </li>
