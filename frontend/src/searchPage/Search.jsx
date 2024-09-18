@@ -4,13 +4,21 @@ import axios from "axios";
 import './Search.css'
 import NavigationBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
-import cincinnati_stock from "./cincinnati-stock.jpg"
+import cincinnati_stock from "./cincinnati-stock.jpg";
+import ReactPaginate from "react-paginate";
 
 export default function Search() {
   const [searchResults, setSearchResults] = useState([]);
   const [eventServerMessage, setEventServerMessage] = useState('');
   const [eventServerErrors, setEventServerErrors] = useState('');
+  const [pageNumber, setPageNumber] = useState(0);
+
   const location = useLocation();
+  //Pagination options
+  const searchResultsPerPage = 10; //specify how much data to show per page
+  const pagesVisited = pageNumber * searchResultsPerPage;
+
+
 
   // Get current location and query from URL
   const query = new URLSearchParams(location.search).get('query');
@@ -55,6 +63,12 @@ const DefaultImage = function(e){
     }
   }, [query]);
 
+  const pageCount = Math.ceil(searchResults.length/searchResultsPerPage)
+  const changePage = ({ selected }) => {
+      setPageNumber(selected);
+    };
+ 
+
   return (
     <>
     <NavigationBar/>
@@ -71,7 +85,7 @@ const DefaultImage = function(e){
     {eventServerErrors && <p className="server-error">{eventServerErrors}</p>}
 
     <div className="search-results"> 
-      {searchResults.map(function (result) {
+      {searchResults.slice(pagesVisited, pagesVisited + searchResultsPerPage).map(function (result) {
         
         return (
           <div key={result.id} className="search-card">
@@ -91,13 +105,26 @@ const DefaultImage = function(e){
                 {result.email && <p className="contact">Email: <a href={`mailto: ${result.email}`}>{result.email}</a></p>}
                 {result.phone_number && <p className="contact">Phone Number: {result.phone_number}</p>}
                 
-         
+           
             </div>
-   
+       
           </div>
         );
       })}
+       
       </div>
+      {/* style this properly for mobile view */}
+      <ReactPaginate
+       previousLabel={"Previous"}
+       nextLabel={"Next"}
+       pageCount={pageCount}
+       onPageChange={changePage}
+       containerClassName={"paginationBttns"}
+       previousLinkClassName={"previousBttn"}
+       nextLinkClassName={"nextBttn"}
+      //  disabledClassName={"paginationDisabled"} removed for now
+       activeClassName={"paginationActive"}
+     />
 
       <div className="home-router">
       <a href="/"> Go back</a>
@@ -112,3 +139,11 @@ const DefaultImage = function(e){
     </>
   );
 }
+
+
+// Bakground: creamy off white
+// Headings: darker purple but still warm (orangey toned...mauve or taupe)
+// links: golden orange...but darker
+//words: still black
+//green: border/shadow  for boxes... maybe line underneath
+//footer: purple, buttons
