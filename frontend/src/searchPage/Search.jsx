@@ -13,12 +13,13 @@ export default function Search() {
   const [eventServerErrors, setEventServerErrors] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
 
+
   const location = useLocation();
   //Pagination options
-  const searchResultsPerPage = 10; //specify how much data to show per page
+  const searchResultsPerPage = 5; //specify how much data to show per page
   const pagesVisited = pageNumber * searchResultsPerPage;
 
-
+ 
 
   // Get current location and query from URL
   const query = new URLSearchParams(location.search).get('query');
@@ -27,7 +28,6 @@ export default function Search() {
 const DefaultImage = function(e){
     e.target.src= cincinnati_stock;
 }
-
 
 
   // Fetch search results
@@ -67,6 +67,11 @@ const DefaultImage = function(e){
   const changePage = ({ selected }) => {
       setPageNumber(selected);
     };
+
+    //change document tab after search
+    useEffect(function(){
+      document.title = `You searched for ${query} |CincyConnect`;
+    })
  
 
   return (
@@ -113,7 +118,8 @@ const DefaultImage = function(e){
       })}
        
       </div>
-      {/* style this properly for mobile view */}
+      <div className="search-pagination">
+
       <ReactPaginate
        previousLabel={"Previous"}
        nextLabel={"Next"}
@@ -125,6 +131,9 @@ const DefaultImage = function(e){
       //  disabledClassName={"paginationDisabled"} removed for now
        activeClassName={"paginationActive"}
      />
+      </div>
+     
+     
 
       <div className="home-router">
       <a href="/"> Go back</a>

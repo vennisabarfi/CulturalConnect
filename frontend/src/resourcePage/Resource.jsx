@@ -13,15 +13,27 @@ export default function Resource(){
     const [serverMessage, setServerMessage] = useState('');
     const [serverErrors, setServerErrors] = useState('');
     const [pageNumber, setPageNumber] = useState(0);
+    const[filter, setFilter] = useState('');
 
-    const resourcesPerPage = 10; //specify how much data to show per page
+    const filteredResources = resources.filter((resource)=>
+      resource.org_name.toLowerCase().includes(filter.toLowerCase())
+    );
+
+   
+  const handleFilterChange = function(e){
+    setFilter(e.target.value);
+  }
+
+
+    const resourcesPerPage = 2; //specify how much data to show per page
     const pagesVisited = pageNumber * resourcesPerPage;
 
   useEffect(function(){
     async function fetchResourceData(){
       try {
         const response = await axios.get('http://localhost:3000/resource/view');
-        setResources(response.data["Resources Found"])
+        setResources(response.data["Resources Found"]);
+        
 
         if (response.status === 200) {
 
@@ -47,6 +59,11 @@ export default function Resource(){
     setPageNumber(selected);
   };
 
+  //filter handlers
+
+
+  
+
     return(
         <>
    <NavigationBar/>
@@ -57,14 +74,14 @@ export default function Resource(){
   {serverMessage && <p className="server-message">{serverMessage}</p>}
   {serverErrors && <p className="server-error">{serverErrors}</p>}
 
-  {/* unique key for items */}
+      {/* Placing resource results and filter component in flexbox */}
   <div className='resource-header'>
   <h4>Resource List</h4>
   <hr/>
   </div>
   <div className='resources-results'>
     {/* even though usually resources.map since we are paginating only want to show the limit of */}
-     {resources.slice(pagesVisited, pagesVisited + resourcesPerPage).map((resource)=>(
+     {filteredResources.slice(pagesVisited, pagesVisited + resourcesPerPage).map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
         <img className="resources-image" alt="organization-image" src={ngo_stock}></img>
@@ -88,8 +105,12 @@ export default function Resource(){
       //  disabledClassName={"paginationDisabled"} removed for now
        activeClassName={"paginationActive"}
      />
+  </div>
 
-
+  <div className='filter-box'>
+    <p>Search for Resources</p>
+    <input type="text" value={filter} placeholder='Search...' onChange={handleFilterChange}/>
+    
   </div>
 
 

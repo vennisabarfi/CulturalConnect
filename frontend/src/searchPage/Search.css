@@ -123,6 +123,14 @@
     
   }
   
+  .search-pagination{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5%;
+    margin-bottom: 2%;
+  }
 
 
 /* Mobile responsive */
