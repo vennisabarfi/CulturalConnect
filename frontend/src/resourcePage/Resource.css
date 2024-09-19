@@ -12,6 +12,11 @@
     margin-top: -30px;
   }
 
+.resource-container{
+  display: flex;
+  justify-content: flex-start;
+}
+
 .resources-results{
 
  /* padding-top: 10%; */
@@ -122,6 +127,30 @@
 .paginationActive a {
   color: white;
   background-color: #DE3163;
+}
+
+.filter-box{
+ margin-top: 10%;
+ margin-right: 5%;
+  border: 2px none;
+  height : fit-content;
+  padding: 3%;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 15px;
+  background-color:#e64875;
+  /* border-color: white;  */
+}
+
+.filter-box p{
+  font-size: 1.8em;
+  font-weight: bolder;
+  color: white;
+}
+
+.filter-box label{
+  color: white;
+
+
 }
 
 

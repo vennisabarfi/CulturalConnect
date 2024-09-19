@@ -111,11 +111,13 @@ console.log(debouncedFilter); //to test
   {serverMessage && <p className="server-message">{serverMessage}</p>}
   {serverErrors && <p className="server-error">{serverErrors}</p>}
 
-      {/* Placing resource results and filter component in flexbox */}
   <div className='resource-header'>
   <h4>Resource List</h4>
   <hr/>
   </div>
+      <div className='resource-container'>
+      {/* Placing resource results and filter component in flexbox */}
+
   <div className='resources-results'>
     {/* even though usually resources.map since we are paginating only want to show the limit of */}
      {filteredResources.slice(pagesVisited, pagesVisited + resourcesPerPage).map((resource)=>(
@@ -148,15 +150,18 @@ console.log(debouncedFilter); //to test
   <div className='filter-box'>
     <p>Search for Resources</p>
     {/* input search box */}
-    <input type="text" value={filter}  placeholder='Search...' onChange={handleFilterChange}/>
+    <input type="text" value={filter}  placeholder='Find resources near you...' onChange={handleFilterChange}/>
     {/* Checkbox for filtering  .. NGO, Sexual Health, Other?*/}
     <br/>
     <br/>
     <p>Filter Resources by Type</p>
     <input type='checkbox' value="Non-Governmental Organization" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Non-Governmental Organization")}/>
     <label>Non-Governmental Organization</label>
+    <br/>
     <input type='checkbox' value="Environmental" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Environmental")}/>
     <label>Environmental</label>
+  </div>
+
   </div>
 
 
