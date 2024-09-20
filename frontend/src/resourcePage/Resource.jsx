@@ -106,15 +106,15 @@ function iconMovePodcast(){
 
   if (icon.style.transform === 'rotate(90deg)'){
           icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
-          filter_box.style.display = 'none';
-          checkbox.style.display = 'none';
+          filter_box.style.display = 'block';
+          checkbox.style.display = 'block';
          
 
           // dropdownMenu.style.display = 'none'; // hide dropdown menu
   }else{
       icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees
-      filter_box.style.display = 'block';
-      checkbox.style.display = 'block';
+      filter_box.style.display = 'none';
+      checkbox.style.display = 'none';
       // dropdownMenu.style.display = 'block'; // hide dropdown menu
   }
 }
@@ -141,7 +141,7 @@ function iconMovePodcast(){
   </div>
 
   {/* Mobile/Smaller Screen Responsive Filter */}
-  <div className='toggle-filter'> <span>Search for Resources</span> <svg onClick={iconMovePodcast} id="arrow-icon-1" className="arrow" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="30px" fill="#5f6368"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg> </div>
+  <div className='toggle-filter'> <span>Filter Resources</span> <svg onClick={iconMovePodcast} id="arrow-icon-1" className="filter-arrow" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg> </div>
   <div id='mobile-filter-box' className='mobile-filter-box'>
     {/* input search box */}
     <input type="text" className='mobile-filter-search-box' value={filter}  placeholder='Find resources near you...' onChange={handleFilterChange}/>

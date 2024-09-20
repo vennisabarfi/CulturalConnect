@@ -173,10 +173,20 @@
 
  }
 
+ .toggle-filter{
+  display: none;
+ }
 
 /* Media Responsive */
 
 @media only screen and (max-width: 768px) {
+
+  .toggle-filter{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 2%;
+    font-weight: bolder;
+    font-size: 1.5em;
+  }
 
   .resources-results{
  
@@ -234,7 +244,28 @@
     flex-direction: row;
     margin-bottom: 3%;
     margin-top: 3%;
+    
   }
+
+  .filter-arrow{
+    /* increase size of arrow */
+      /* transform: scale(1.15); 
+      fill: hsl(0, 0%, 7%); */
+      width: 1.05em; /* Makes the SVG scale with the font size */
+    height: auto; /* Maintains aspect ratio */
+    margin-left: 5px; /* Space between text and icon */
+    fill: #2e2e30; /* Ensures the fill color remains consistent */
+    cursor: pointer; /* Change cursor on hover */
+    transform: scale(0.75); /* Adjust the scale here */
+    transform-origin: center; /* Ensure it scales from the center */
+  }
+
+.filter-arrow:hover{
+  cursor: pointer;
+  /* transform: rotate(90deg); */
+}
+
+
 
 
 }
