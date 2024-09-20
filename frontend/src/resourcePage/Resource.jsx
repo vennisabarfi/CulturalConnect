@@ -16,8 +16,7 @@ export default function Resource(){
     const[filter, setFilter] = useState('');
     const [checked, setChecked] = useState(new Set()); //using a set so you can filter multiple items, else use ''
     const [debouncedFilter, setDebouncedFilter] = useState(filter); //debouncing results
-
-
+  
     
 
     //filter by organization name or location. add input debouncing to avoid crashes
@@ -31,9 +30,6 @@ export default function Resource(){
     });
 
     //Filter by type of resource
-
-
-   
   const handleFilterChange = function(e){
     setFilter(e.target.value);
     
@@ -99,11 +95,37 @@ export default function Resource(){
   }, [filter]); // The effect runs every time `filter` changes
 
 console.log(debouncedFilter); //to test
+
+
+//filter component
+function iconMovePodcast(){
+  const icon = document.getElementById('arrow-icon-1');
+  const filter_box = document.getElementById('mobile-filter-box');
+  const checkbox = document.getElementById('mobile-filter-checkbox');
+  // const dropdownMenu = document.getElementById('dropdown-items-2');
+
+  if (icon.style.transform === 'rotate(90deg)'){
+          icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
+          filter_box.style.display = 'none';
+          checkbox.style.display = 'none';
+         
+
+          // dropdownMenu.style.display = 'none'; // hide dropdown menu
+  }else{
+      icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees
+      filter_box.style.display = 'block';
+      checkbox.style.display = 'block';
+      // dropdownMenu.style.display = 'block'; // hide dropdown menu
+  }
+}
+
   
 
     return(
         <>
    <NavigationBar/>
+   
+   
 
 
 
@@ -111,10 +133,33 @@ console.log(debouncedFilter); //to test
   {serverMessage && <p className="server-message">{serverMessage}</p>}
   {serverErrors && <p className="server-error">{serverErrors}</p>}
 
+
+
   <div className='resource-header'>
   <h4>Resource List</h4>
   <hr/>
   </div>
+
+  {/* Mobile/Smaller Screen Responsive Filter */}
+  <div className='toggle-filter'> <span>Search for Resources</span> <svg onClick={iconMovePodcast} id="arrow-icon-1" className="arrow" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="30px" fill="#5f6368"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg> </div>
+  <div id='mobile-filter-box' className='mobile-filter-box'>
+    {/* input search box */}
+    <input type="text" className='mobile-filter-search-box' value={filter}  placeholder='Find resources near you...' onChange={handleFilterChange}/>
+    {/* Checkbox for filtering  .. NGO, Sexual Health, Other?*/}
+   
+    <br/>
+    <p>Filter Resources by Type</p>
+    </div>
+   
+    <div id = 'mobile-filter-checkbox' className='mobile-filter-checkbox'> 
+    <input type='checkbox' value="Non-Governmental Organization" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Non-Governmental Organization")}/>
+    <label>Non-Governmental Organization</label>
+    <br/>
+    <input type='checkbox' value="Environmental" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Environmental")}/>
+    <label>Environmental</label>
+    </div>
+
+
       <div className='resource-container'>
       {/* Placing resource results and filter component in flexbox */}
 
@@ -150,7 +195,7 @@ console.log(debouncedFilter); //to test
   <div className='filter-box'>
     <p>Search for Resources</p>
     {/* input search box */}
-    <input type="text" value={filter}  placeholder='Find resources near you...' onChange={handleFilterChange}/>
+    <input type="text" className='filter-search-box' value={filter}  placeholder='Find resources near you...' onChange={handleFilterChange}/>
     {/* Checkbox for filtering  .. NGO, Sexual Health, Other?*/}
     <br/>
     <br/>
