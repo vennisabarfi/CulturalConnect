@@ -42,9 +42,14 @@ func main() {
 
 	defer pool.Close()
 
-	// r.GET("/home", func(c *gin.Context) {
-	// 	c.String(200, "Welcome to the Culture Connect API")
-	// })
+	fmt.Print("Hello I'm just here to ping")
+	//ping database
+	pingErr := pool.Ping()
+	if pingErr != nil {
+		log.Fatal("Error pinging database", pingErr)
+	} else {
+		fmt.Println("Database pinged successfully")
+	}
 
 	// home handlers
 	home := r.Group("/home")
