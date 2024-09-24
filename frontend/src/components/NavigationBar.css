@@ -11,6 +11,7 @@
   font-family:'Roboto';
   
   
+  
 }
 
 .nav-bar ul {
@@ -18,6 +19,7 @@
   margin: 0;
   padding: 0;
   display: flex;
+  color: rgb(139, 21, 84);
 }
 
 
@@ -45,7 +47,7 @@
 } 
 
 .nav-bar a.active {
-  background-color: #FAEBD7;
+  background-color: #FFF8DC;
   font-weight: bold;
 }
 
@@ -99,6 +101,7 @@
     display: none; /* Initially hide the menu */
     width: 100%;
     align-items: flex-end; /* Right-align the menu items */
+    color: rgb(139, 21, 84);
   }
 
   .nav-bar ul.show {
@@ -135,5 +138,6 @@
     font-size: 1.5em;
     margin: 10px;
     align-self: flex-end; /* Right-align the hamburger icon */
+    color: rgb(139, 21, 84);
   }
 }

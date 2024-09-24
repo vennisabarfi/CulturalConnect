@@ -5,6 +5,8 @@
 .home-body {
   scroll-behavior: smooth;
   
+  
+ 
 }
 
 .home-title{
@@ -17,12 +19,14 @@
   text-shadow: 1px 1px 2px pink;
   margin-bottom: -40px;
   margin-left: -10px;
+  color: rgb(139, 21, 84);
   
 
 
 }
 
 .home-subtitle{
+  color: rgb(139, 21, 84);
   align-items: center;
   justify-content: center;
   display:flex;
@@ -51,7 +55,8 @@
 
 
 .search-button {
-  background-color: #FF91AF;
+  /* background-color: #FF91AF; */
+  background-color: rgb(139, 21, 84);
   font-size: 17px; /* Match the font size of the input box */
   font-family: Arial, Helvetica, sans-serif;
   color: #F2F3F4;
@@ -185,6 +190,7 @@
   width: 100%;
   text-shadow: 1px 1px 2px pink;
   margin-bottom: -20px;
+  color: rgb(139, 21, 84);
 }
 
 .home-subtitle {
@@ -195,6 +201,7 @@
   font-size: 20px;
   text-align: center;
   width: 100%;
+  color: rgb(139, 21, 84);
 }
 
 /* Home search */
@@ -306,6 +313,7 @@
   justify-content: left;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
+  color: rgb(139, 21, 84)
 }
 
 .card-header hr {

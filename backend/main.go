@@ -33,7 +33,7 @@ func main() {
 
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	// pool, err := sql.Open("postgres", "user=postgres password=PNeumono38%21 dbname=classic_movies_db sslmode=disable")
+	fmt.Print(os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal("Error opening database connection", err)
 	} else {
