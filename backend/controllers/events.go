@@ -98,9 +98,9 @@ func InsertEvent(c *gin.Context) {
 
 	ctx := context.Background()
 
-	query := "INSERT INTO events (display_image, organizer_name, description, location, date, time, website) VALUES($1, $2, $3, $4, $5, $6, $7) Returning ID"
+	query := "INSERT INTO events (display_image, organizer_name, description, location, date, time, website, type) VALUES($1, $2, $3, $4, $5, $6, $7, $8) Returning ID"
 
-	err = pool.QueryRowContext(ctx, query, event.DisplayImage, event.OrganizerName, event.Description, event.Location, parsedEventDate, parsedEventTime, event.Website).Scan(&event.ID) //due to auto increment
+	err = pool.QueryRowContext(ctx, query, event.DisplayImage, event.OrganizerName, event.Description, event.Location, parsedEventDate, parsedEventTime, event.Website, event.Type).Scan(&event.ID) //due to auto increment
 
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{
@@ -113,8 +113,8 @@ func InsertEvent(c *gin.Context) {
 		fmt.Println("Inserting event information into database...")
 
 		c.IndentedJSON(http.StatusOK, gin.H{
-			"message":              "Resource added successfully",
-			"resource information": event,
+			"message":           "Event added successfully",
+			"event information": event,
 		})
 	}
 }

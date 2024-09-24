@@ -41,7 +41,6 @@ func InsertResource(c *gin.Context) {
 		Type         string         `json:"type" binding:"required"`
 		Email        string         `json:"email" binding:"required"`
 		Phone        string         `json:"phone"`
-		TSV          string         `json:"tsv"`
 	}
 
 	// if error with fields
@@ -63,7 +62,6 @@ func InsertResource(c *gin.Context) {
 		Type:         body.Type,
 		Email:        body.Email,
 		Phone:        body.Phone,
-		TSV:          body.TSV,
 	}
 
 	//open database connection
@@ -80,7 +78,7 @@ func InsertResource(c *gin.Context) {
 
 	query := "INSERT INTO resources (display_image, org_name, description, location, website, type, email, phone_number) VALUES($1, $2, $3, $4, $5, $6, $7, $8) Returning ID"
 
-	err = pool.QueryRowContext(ctx, query, resource.DisplayImage, resource.OrgName, resource.Description, resource.Location, resource.Website, resource.Type, resource.Email, resource.Phone, resource.TSV).Scan(&resource.ID) //due to auto increment
+	err = pool.QueryRowContext(ctx, query, resource.DisplayImage, resource.OrgName, resource.Description, resource.Location, resource.Website, resource.Type, resource.Email, resource.Phone).Scan(&resource.ID) //due to auto increment
 
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{
