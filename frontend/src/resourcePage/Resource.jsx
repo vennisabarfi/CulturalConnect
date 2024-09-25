@@ -107,9 +107,11 @@ function iconMovePodcast(){
   if (icon.style.transform === 'rotate(90deg)'){
           icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
           filter_box.style.display = 'block';
+          filter_box.style.marginLeft = '9%';
           checkbox.style.display = 'block';
+          checkbox.style.marginLeft = '9%';
          
-
+ 
           // dropdownMenu.style.display = 'none'; // hide dropdown menu
   }else{
       icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees
@@ -142,6 +144,7 @@ function iconMovePodcast(){
   </div>
 
   {/* Mobile/Smaller Screen Responsive Filter */}
+  
   <div className='toggle-filter'> <span>Filter Resources</span> <svg onClick={iconMovePodcast} id="arrow-icon-1" className="filter-arrow" fill="rgb(139, 21, 84);" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg> </div>
   <div id='mobile-filter-box' className='mobile-filter-box'>
     {/* input search box */}

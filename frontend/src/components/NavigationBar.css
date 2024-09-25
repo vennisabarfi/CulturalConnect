@@ -1,5 +1,5 @@
 
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .nav-bar{
   justify-content: center;
@@ -9,8 +9,6 @@
   font-size: 1.5em;
   width: 100%;
   font-family:'Roboto';
-  
-  
   
 }
 
@@ -47,7 +45,7 @@
 } 
 
 .nav-bar a.active {
-  background-color: #FFF8DC;
+  /* background-color: #FFF8DC; */
   font-weight: bold;
 }
 
@@ -93,7 +91,19 @@
   .nav-bar {
     flex-direction: column;
     align-items: flex-end; /* Align the hamburger and menu to the right */
+    height: 100%;
+    position: fixed; /* this will cover the whole screen*/
+    top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;  /*allow height to adjust based on content*/
+  transition: height 0.3s ease;
+  overflow-y: auto;
  
+  }
+
+  .nav-bar.show{
+    /* height: 100vh; */
   }
 
   .nav-bar ul {
@@ -102,10 +112,14 @@
     width: 100%;
     align-items: flex-end; /* Right-align the menu items */
     color: rgb(139, 21, 84);
+    background-color: white;
+    margin: 0;
+    padding: 0;
   }
 
   .nav-bar ul.show {
     display: flex;
+    height: calc(100vh - 60px);
   }
 
   .nav-bar li {
@@ -116,8 +130,6 @@
   #drop-down-items {
     position: static;
     min-width: 100%;
-
-
   }
 
 
@@ -132,12 +144,56 @@
     display: block;
   }
 
-  .hamburger {
-    display: block;
-    cursor: pointer;
-    font-size: 1.5em;
-    margin: 10px;
-    align-self: flex-end; /* Right-align the hamburger icon */
-    color: rgb(139, 21, 84);
+  .nav-menu{
+
+    /* filter: blur(8px); */
+    transition: 0.5s;
+    text-align: center;
+    background: transparent;
+    
+   
   }
+
+  /* Hamburger icon styles */
+.hamburger {
+  display: block;
+  cursor: pointer;
+  font-size: 1.5em;
+  margin: 10px;
+  align-self: flex-end; /* Right-align the hamburger icon */
+  color: rgb(139, 21, 84);
+  transform: scale(1.2);
+  cursor: pointer;
+  padding-top: 1%;
+  padding-right: 2%;
+  width: 30px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 2%;
+}
+
+
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(139, 21, 84);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* When active, transform the hamburger to an X */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
 }

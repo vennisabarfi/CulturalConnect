@@ -188,9 +188,10 @@
 
   .toggle-filter{
     font-family: Arial, Helvetica, sans-serif;
-    margin-left: 2%;
+    margin-left: 9%;
     font-weight: bolder;
     font-size: 1.5em;
+
   
   }
 
@@ -211,6 +212,7 @@
 
    .filter-box{
     display: none;
+
    }
 
    .toggle-filter span{
@@ -218,10 +220,10 @@
    }
 
    .toggle-filter svg{
-    fill: rgb(139, 21, 84);;
+    fill: rgb(139, 21, 84);
    }
    .mobile-filter-box{
-    border: 2px none;
+    border: 2px;
     display: flex;
     flex-direction: column;
     margin-left: 1%;
@@ -262,16 +264,18 @@
     flex-direction: row;
     margin-bottom: 3%;
     margin-top: 3%;
-    
+  
   }
 
   .filter-arrow{
     /* increase size of arrow */
       /* transform: scale(1.15); 
       fill: hsl(0, 0%, 7%); */
-      width: 1.05em; /* Makes the SVG scale with the font size */
+   
+    width: 1em; /* Makes the SVG scale with the font size */
     height: auto; /* Maintains aspect ratio */
-    margin-left: 5px; /* Space between text and icon */
+    margin-left: 10px; /* Space between text and icon */
+    margin-top: 1%;
     fill: #2e2e30; /* Ensures the fill color remains consistent */
     cursor: pointer; /* Change cursor on hover */
     transform: scale(0.75); /* Adjust the scale here */
