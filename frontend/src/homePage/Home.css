@@ -5,7 +5,6 @@
 
 .home-body {
   scroll-behavior: smooth;
-  background-color: #FFF0F5;
   margin-bottom: -3%;
   background-image: url("book_2.jpg");
   background-position: 50%;
@@ -212,8 +211,6 @@
 
 .home-body {
   scroll-behavior: smooth;
-  /* background-color: #f8e7f4; */
-  background-color: #FFF0F5;
   margin-bottom: -3%;
   background-image: url("book_2.jpg");
   background-position: 50%;
@@ -294,6 +291,9 @@
   
 }
 
+.search-box :active{
+  border-color: rgb(139, 21, 84);
+}
 .search-button {
   /* background-color: #FF91AF; */
   font-size: 17px;

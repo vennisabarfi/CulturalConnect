@@ -68,7 +68,7 @@ export default function Home(){
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@100..400&display=swap');
 </style>
 <h1>Welcome</h1>
-<h2>To</h2>
+<h2>to</h2>
 <span className="brand-name">Cincinnati</span>
 <span className="brand-name">Gay Pages</span>
 </div>

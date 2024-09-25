@@ -26,8 +26,21 @@ const handleTabClick = function(path){
 // toggle menu for mobile devices
 function toggleMenu() {
   const menu = document.getElementById('nav-menu');
+  const changeHamburger = document.getElementById('hamburger')
   menu.classList.toggle('show');
+  
+
+
+ // Toggle between hamburger icon and "X"
+ // if the hamburger id is active/menu is open
+ if (changeHamburger.classList.contains('active')) {
+  changeHamburger.classList.remove('active');
+} else {
+  changeHamburger.classList.add('active');
 }
+}
+  
+
 
 
     return(
@@ -37,8 +50,12 @@ function toggleMenu() {
 </style>
 
     <nav className='nav-bar'>
-      <div className='hamburger' onClick={toggleMenu}>☰</div>
-      <ul id="nav-menu">
+    <div id="hamburger" className="hamburger" onClick={toggleMenu}>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+      <ul className="nav-menu" id="nav-menu">
       <li>
         <a 
       href="/"  

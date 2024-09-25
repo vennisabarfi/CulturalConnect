@@ -10,8 +10,6 @@
   width: 100%;
   font-family:'Roboto';
   
-  
-  
 }
 
 .nav-bar ul {
@@ -47,7 +45,7 @@
 } 
 
 .nav-bar a.active {
-  background-color: #FFF8DC;
+  /* background-color: #FFF8DC; */
   font-weight: bold;
 }
 
@@ -116,8 +114,6 @@
   #drop-down-items {
     position: static;
     min-width: 100%;
-
-
   }
 
 
@@ -132,12 +128,53 @@
     display: block;
   }
 
-  .hamburger {
-    display: block;
-    cursor: pointer;
-    font-size: 1.5em;
-    margin: 10px;
-    align-self: flex-end; /* Right-align the hamburger icon */
-    color: rgb(139, 21, 84);
+  .nav-menu{
+    background-color: #FAEBD7;
+    /* filter: blur(8px); */
+    transition: 0.5s;
+    text-align: center;
+    overflow-x: hidden;
+    background: transparent;
+   
   }
+
+  /* Hamburger icon styles */
+.hamburger {
+  display: block;
+  cursor: pointer;
+  font-size: 1.5em;
+  margin: 10px;
+  align-self: flex-end; /* Right-align the hamburger icon */
+  color: rgb(139, 21, 84);
+  transform: scale(1.2);
+  cursor: pointer;
+  padding-top: 1%;
+  padding-right: 2%;
+  width: 30px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(139, 21, 84);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* When active, transform the hamburger to an X */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
 }
