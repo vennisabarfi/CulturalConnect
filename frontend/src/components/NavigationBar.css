@@ -1,5 +1,5 @@
 
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .nav-bar{
   justify-content: center;
@@ -91,7 +91,19 @@
   .nav-bar {
     flex-direction: column;
     align-items: flex-end; /* Align the hamburger and menu to the right */
+    height: 100%;
+    position: fixed; /* this will cover the whole screen*/
+    top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;  /*allow height to adjust based on content*/
+  transition: height 0.3s ease;
+  overflow-y: auto;
  
+  }
+
+  .nav-bar.show{
+    /* height: 100vh; */
   }
 
   .nav-bar ul {
@@ -100,10 +112,14 @@
     width: 100%;
     align-items: flex-end; /* Right-align the menu items */
     color: rgb(139, 21, 84);
+    background-color: white;
+    margin: 0;
+    padding: 0;
   }
 
   .nav-bar ul.show {
     display: flex;
+    height: calc(100vh - 60px);
   }
 
   .nav-bar li {
@@ -129,12 +145,12 @@
   }
 
   .nav-menu{
-    background-color: #FAEBD7;
+
     /* filter: blur(8px); */
     transition: 0.5s;
     text-align: center;
-    overflow-x: hidden;
     background: transparent;
+    
    
   }
 
@@ -155,7 +171,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-top: 2%;
 }
+
+
 
 .hamburger span {
   display: block;

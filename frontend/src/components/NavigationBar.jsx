@@ -26,18 +26,24 @@ const handleTabClick = function(path){
 // toggle menu for mobile devices
 function toggleMenu() {
   const menu = document.getElementById('nav-menu');
-  const changeHamburger = document.getElementById('hamburger')
-  menu.classList.toggle('show');
+  const changeHamburger = document.getElementById('hamburger');
+  const hamburgerArea = document.querySelector('hamburger-area');
+  const navBar = document.querySelector('.nav-bar');
   
+  menu.classList.toggle('show');
+  navBar.classList.toggle('show');
 
-
- // Toggle between hamburger icon and "X"
- // if the hamburger id is active/menu is open
- if (changeHamburger.classList.contains('active')) {
-  changeHamburger.classList.remove('active');
-} else {
-  changeHamburger.classList.add('active');
-}
+  
+  // Toggle between hamburger icon and "X"
+  // if the hamburger id is active/menu is open
+  if (changeHamburger.classList.contains('active')) {
+    changeHamburger.classList.remove('active');
+    hamburgerArea.style.backgroundColor = '';
+    
+  } else {
+    changeHamburger.classList.add('active');
+    hamburgerArea.style.backgroundColor == 'white';
+  }
 }
   
 
@@ -45,16 +51,15 @@ function toggleMenu() {
 
     return(
       <>
-     <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-</style>
-
-    <nav className='nav-bar'>
+     
+    <nav id ="nav-bar" className='nav-bar'>
+      
     <div id="hamburger" className="hamburger" onClick={toggleMenu}>
   <span></span>
   <span></span>
   <span></span>
 </div>
+
       <ul className="nav-menu" id="nav-menu">
       <li>
         <a 
