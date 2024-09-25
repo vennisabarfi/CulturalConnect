@@ -107,9 +107,11 @@ function iconMovePodcast(){
   if (icon.style.transform === 'rotate(90deg)'){
           icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
           filter_box.style.display = 'block';
+          filter_box.style.marginLeft = '9%';
           checkbox.style.display = 'block';
+          checkbox.style.marginLeft = '9%';
          
-
+ 
           // dropdownMenu.style.display = 'none'; // hide dropdown menu
   }else{
       icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees

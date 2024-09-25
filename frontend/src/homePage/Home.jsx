@@ -64,7 +64,13 @@ export default function Home(){
     <NavigationBar/>
 
 <div className="home-title">
-<h2>Cincinnati Online LGBTQ+ Directory</h2>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@100..400&display=swap');
+</style>
+<h1>Welcome</h1>
+<h2>To</h2>
+<span className="brand-name">Cincinnati</span>
+<span className="brand-name">Gay Pages</span>
 </div>
 
 <div className="home-subtitle">
@@ -87,15 +93,15 @@ export default function Home(){
 {eventServerMessage && <p className="server-message">{eventServerMessage}</p>}
 {eventServerErrors && <p className="server-error">{eventServerErrors}</p>}
 
-<div className="card-header">
+{/* <div className="card-header">
  <h2> Hottest Events</h2>
  <hr/>
-</div>
+</div> */}
 
 
 
 
-<div  className="home-card-layout">
+{/* <div  className="home-card-layout">
 {events.map((event)=>(
           
           <div key={event.id} className="home-card">
@@ -105,17 +111,17 @@ export default function Home(){
               <p>{event.description}</p>
               <button className="home-card-button"><a>See More</a></button>
               {/* re route see more to specific webpage work on this */}
-          </div>
+          {/* </div>
           </div>
       
      ))}
-      </div>
+      </div> */} 
 
 
 
 
 
-<div className="card-header">
+{/* <div className="card-header">
  <h2> Newest Members</h2>
  <hr/>
 </div>
@@ -129,7 +135,7 @@ export default function Home(){
   </div>
 
 
-</div>
+</div> */}
 
 
 </main>
