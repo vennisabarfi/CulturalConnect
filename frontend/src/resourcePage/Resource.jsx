@@ -23,7 +23,8 @@ export default function Resource(){
     const filteredResources = resources.filter((resource)=>{
       const matchesText = 
       resource.org_name.toLowerCase().includes(filter.toLowerCase()) ||
-      resource.location.toLowerCase().includes(filter.toLowerCase()) 
+      resource.location.toLowerCase().includes(filter.toLowerCase()) ||
+      resource.description.toLowerCase().includes(filter.toLowerCase())
 
       const matchesType = checked.size ===0 || checked.has(resource.type);
       return matchesText && matchesType
@@ -177,7 +178,7 @@ function iconMovePodcast(){
      {filteredResources.slice(pagesVisited, pagesVisited + resourcesPerPage).map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
-        <img className="resources-image" alt="organization-image" src={ngo_stock}></img>
+        <img className="resources-image" alt="organization-image" src={resource.display_image} onError={ngo_stock}></img>
         <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
         <p>Type: {resource.type}</p>

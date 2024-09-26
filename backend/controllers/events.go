@@ -13,18 +13,18 @@ import (
 )
 
 type Events struct {
-	ID            int64          `json:"id"`
-	DisplayImage  sql.NullString `json:"display_image"`
-	OrganizerName string         `json:"organizer_name"`
-	Description   string         `json:"description"`
-	Location      string         `json:"location"`
-	Date          string         `json:"date"`
-	Time          string         `json:"time"`
-	Website       string         `json:"website"`
-	CreatedAt     string         `json: created_at`
-	DeletedAt     string         `json: deleted_at`
-	Type          string         `json: type`
-	TSV           string         `json:tsv` //tsv vector for search
+	ID            int64  `json:"id"`
+	DisplayImage  string `json:"display_image"`
+	OrganizerName string `json:"organizer_name"`
+	Description   string `json:"description"`
+	Location      string `json:"location"`
+	Date          string `json:"date"`
+	Time          string `json:"time"`
+	Website       string `json:"website"`
+	CreatedAt     string `json: created_at`
+	DeletedAt     string `json: deleted_at`
+	Type          string `json: type`
+	TSV           string `json:tsv` //tsv vector for search
 }
 
 // var pool *sql.DB
@@ -44,15 +44,15 @@ func ParseTime(timeStr string) (time.Time, error) {
 // insert an event
 func InsertEvent(c *gin.Context) {
 	var body struct {
-		DisplayImage  sql.NullString `json:"display_image"`
-		OrganizerName string         `json:"organizer_name" binding:"required"`
-		Description   string         `json:"description" binding:"required"`
-		Location      string         `json:"location" binding:"required"`
-		Date          string         `json:"date" binding:"required"`
-		Time          string         `json:"time" binding:"required"`
-		Website       string         `json:"website"`
-		Type          string         `json:"type"`
-		TSV           string         `json:"tsv"`
+		DisplayImage  string `json:"display_image"`
+		OrganizerName string `json:"organizer_name" binding:"required"`
+		Description   string `json:"description" binding:"required"`
+		Location      string `json:"location" binding:"required"`
+		Date          string `json:"date" binding:"required"`
+		Time          string `json:"time" binding:"required"`
+		Website       string `json:"website"`
+		Type          string `json:"type"`
+		TSV           string `json:"tsv"`
 	}
 
 	// if error with fields

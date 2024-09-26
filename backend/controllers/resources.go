@@ -16,14 +16,14 @@ import (
 
 type Resources struct {
 	ID           int64          `json:"id"`
-	DisplayImage sql.NullString `json:"display_image"`
+	DisplayImage string         `json:"display_image"` //store temporarily as a string
 	OrgName      string         `json:"org_name"`
 	Description  string         `json:"description"`
 	Location     string         `json:"location"`
 	Website      string         `json:"website"`
 	Type         string         `json:"type"`
 	Email        string         `json:"email"`
-	Phone        string         `json:"phone"`
+	Phone        sql.NullString `json:"phone"`
 	TSV          string         `json:"tsv"`
 	CreatedAt    string         `json: created_at`
 	DeletedAt    string         `json: deleted_at`
@@ -33,14 +33,14 @@ var pool *sql.DB
 
 func InsertResource(c *gin.Context) {
 	var body struct {
-		DisplayImage sql.NullString `json:"display_image"`
+		DisplayImage string         `json:"display_image"`
 		OrgName      string         `json:"org_name" binding:"required"`
 		Description  string         `json:"description" binding:"required"`
 		Location     string         `json:"location"`
 		Website      string         `json:"website"`
 		Type         string         `json:"type" binding:"required"`
 		Email        string         `json:"email" binding:"required"`
-		Phone        string         `json:"phone"`
+		Phone        sql.NullString `json:"phone"`
 	}
 
 	// if error with fields
@@ -117,30 +117,48 @@ func ViewResources(c *gin.Context) {
 
 	//initialize array of resources
 	var resources []Resources
+	//initialize array of json data in display image
 
 	// Loop through rows. finds memory address and map onto databases
 	for rows.Next() {
 		var resource Resources
-		if err := rows.Scan(&resource.ID, &resource.DisplayImage,
+		var displayImageData []byte // Temporary variable for raw image data
+
+		// Scan each row into the resource fields and displayImageData
+		if err := rows.Scan(&resource.ID, &displayImageData,
 			&resource.OrgName, &resource.Description,
 			&resource.Location, &resource.Website,
 			&resource.Type, &resource.Email,
 			&resource.Phone, &resource.TSV, &resource.CreatedAt,
 			&resource.DeletedAt); err != nil {
+
+			// Handle errors during scanning
 			c.IndentedJSON(http.StatusBadRequest, gin.H{
 				"Error retrieving resources": err,
 			})
-			log.Print("Error retrieving resources from database", err)
+			log.Print("Error retrieving resources from database:", err)
 			return
 		}
-		resources = append(resources, resource) // append results to resources array
+
+		// Directly assign the image URL(which is stored as a string in the database)
+		resource.DisplayImage = string(displayImageData)
+		fmt.Println("Resource image: ", resource.DisplayImage)
+
+		// Append the resource to the resources slice
+		resources = append(resources, resource)
 	}
+
+	// Handle the case where no rows are found
 	if err == sql.ErrNoRows {
 		c.IndentedJSON(http.StatusNotFound, gin.H{
 			"message": "No resources found",
 		})
+		return
 	}
+
+	// Return the found resources as JSON
 	c.IndentedJSON(http.StatusOK, gin.H{
 		"Resources Found": resources,
 	})
+
 }

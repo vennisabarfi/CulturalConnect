@@ -12,25 +12,25 @@ import (
 )
 
 type Media struct {
-	ID           int64          `json:"id"`
-	Name         string         `json:"name"`
-	DisplayImage sql.NullString `json:"display_image"`
-	Website      string         `json:"website"`
-	Description  string         `json:"description"`
-	Tag          string         `json:"tag"`
-	TSV          string         `json:"tsv"`
-	CreatedAt    string         `json: created_at`
-	DeletedAt    string         `json: deleted_at`
+	ID           int64  `json:"id"`
+	Name         string `json:"name"`
+	DisplayImage string `json:"display_image"`
+	Website      string `json:"website"`
+	Description  string `json:"description"`
+	Tag          string `json:"tag"`
+	TSV          string `json:"tsv"`
+	CreatedAt    string `json: created_at`
+	DeletedAt    string `json: deleted_at`
 }
 
 func InsertMedia(c *gin.Context) {
 	var body struct {
-		Name         string         `json:"name" binding:"required"`
-		DisplayImage sql.NullString `json:"display_image"`
-		Website      string         `json:"website" binding:"required"`
-		Description  string         `json:"description" binding:"required"`
-		Tag          string         `json:"tag" binding:"required"`
-		TSV          string         `json:"tsv"`
+		Name         string `json:"name" binding:"required"`
+		DisplayImage string `json:"display_image"`
+		Website      string `json:"website" binding:"required"`
+		Description  string `json:"description" binding:"required"`
+		Tag          string `json:"tag" binding:"required"`
+		TSV          string `json:"tsv"`
 	}
 
 	// if error with fields

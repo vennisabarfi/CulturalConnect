@@ -18,7 +18,7 @@
   padding: 0;
   display: flex;
   /* color: rgb(139, 21, 84); */
-  color: #4A5D23;
+  color: rgb(139, 21, 113);
 }
 
 
@@ -100,12 +100,12 @@
     display: none; /* Initially hide the menu */
     width: 100%;
     align-items: flex-end; /* Right-align the menu items */
-    color: rgb(139, 21, 84);
+    color: rgb(139, 21, 113);
   }
 
   .nav-bar ul.show {
     display: flex;
-    background-color: #FAEBD7;;
+    background-color: #FAEBD7;
   }
 
   .nav-bar li {
@@ -148,7 +148,7 @@
   font-size: 1.5em;
   margin: 10px;
   align-self: flex-end; /* Right-align the hamburger icon */
-  color: rgb(139, 21, 84);
+  color:rgb(139, 21, 113);
   transform: scale(1.2);
   cursor: pointer;
   padding-top: 1%;
@@ -164,7 +164,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: rgb(139, 21, 84);
+  background-color:rgb(139, 21, 113);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
