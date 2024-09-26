@@ -9,7 +9,7 @@ import Media from "./mediaPage/Media";
 import Search from "./searchPage/Search";
 import NotFound from "./NotFoundPage/NotFound"
 import NotFoundSearch from "./NotFoundPage/NotFoundSearch";
-import Contribute from "./contributePage/Contribute";
+
 
 function App() {
  
@@ -24,7 +24,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/resources" element={<Resource />} />
           <Route path="/media" element={<Media />} />
-          <Route path="/contribute" element={<Contribute />} />
+          <Route path="/business" element={<Business/>} />
           <Route path="/search" element={<Search />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/search-404" element={<NotFoundSearch />} />
