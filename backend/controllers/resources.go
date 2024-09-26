@@ -122,10 +122,9 @@ func ViewResources(c *gin.Context) {
 	// Loop through rows. finds memory address and map onto databases
 	for rows.Next() {
 		var resource Resources
-		var displayImageData []byte // Temporary variable for raw image data
 
 		// Scan each row into the resource fields and displayImageData
-		if err := rows.Scan(&resource.ID, &displayImageData,
+		if err := rows.Scan(&resource.ID, &resource.DisplayImage,
 			&resource.OrgName, &resource.Description,
 			&resource.Location, &resource.Website,
 			&resource.Type, &resource.Email,
@@ -139,10 +138,6 @@ func ViewResources(c *gin.Context) {
 			log.Print("Error retrieving resources from database:", err)
 			return
 		}
-
-		// Directly assign the image URL(which is stored as a string in the database)
-		resource.DisplayImage = string(displayImageData)
-		fmt.Println("Resource image: ", resource.DisplayImage)
 
 		// Append the resource to the resources slice
 		resources = append(resources, resource)

@@ -98,7 +98,7 @@ const DefaultImage = function(e){
           <div key={result.id} className="search-card">
            
             <div className="search-container">
-            <img className="search-image" alt="search-result image" src={result.display_image} onError={DefaultImage} /> 
+            <img className="search-image" alt="search-result image" src={result.display_image} /> 
               <h3>{result.organizer_name}</h3>
               <h3>{result.name}</h3>
               <p className="description">{result.description.substring(0,400)}..</p>

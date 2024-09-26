@@ -11,22 +11,22 @@ import (
 
 // omitempty will ensure null values can be accomodated
 type Results struct {
-	ID                  string         `json:"id"`
-	DisplayImage        sql.NullString `json:"display_image"`
-	OrganizerName       *string        `json:"organizer_name,omitempty"`
-	Name                *string        `json:"name,omitempty"` // For media and businesses
-	Description         *string        `json:"description,omitempty"`
-	DescriptionHeadline *string        `json:"description_headline,omitempty"`
-	Location            *string        `json:"location,omitempty"`
-	Date                *string        `json:"date,omitempty"`
-	Time                *string        `json:"time,omitempty"`
-	Website             *string        `json:"website,omitempty"`
-	Type                *string        `json:"type,omitempty"`
-	Tag                 *string        `json:"tag,omitempty"`          // For media
-	ServiceType         *string        `json:"service_type,omitempty"` // For businesses
-	Email               *string        `json:"email,omitempty"`
-	PhoneNumber         *string        `json:"phone_number,omitempty"`
-	Rank                string         `json:"rank"` // Rank as a string
+	ID                  string  `json:"id"`
+	DisplayImage        string  `json:"display_image"`
+	OrganizerName       *string `json:"organizer_name,omitempty"`
+	Name                *string `json:"name,omitempty"` // For media and businesses
+	Description         *string `json:"description,omitempty"`
+	DescriptionHeadline *string `json:"description_headline,omitempty"`
+	Location            *string `json:"location,omitempty"`
+	Date                *string `json:"date,omitempty"`
+	Time                *string `json:"time,omitempty"`
+	Website             *string `json:"website,omitempty"`
+	Type                *string `json:"type,omitempty"`
+	Tag                 *string `json:"tag,omitempty"`          // For media
+	ServiceType         *string `json:"service_type,omitempty"` // For businesses
+	Email               *string `json:"email,omitempty"`
+	PhoneNumber         *string `json:"phone_number,omitempty"`
+	Rank                string  `json:"rank"` // Rank as a string
 }
 
 //search whole database
