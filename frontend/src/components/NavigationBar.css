@@ -37,12 +37,14 @@
   text-decoration: none;
   padding: 15px 20px;
   display: block;
+  color: rgb(139, 21, 113);
   
 }
 
 .nav-bar a:visited {
   text-decoration: none;
-  color: inherit;
+  color: rgb(139, 21, 113);
+
 } 
 
 .nav-bar a.active {

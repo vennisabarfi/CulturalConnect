@@ -4,7 +4,6 @@ import axios from "axios";
 import './Search.css'
 import NavigationBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
-import cincinnati_stock from "./cincinnati-stock.jpg";
 import ReactPaginate from "react-paginate";
 
 export default function Search() {
@@ -24,10 +23,10 @@ export default function Search() {
   // Get current location and query from URL
   const query = new URLSearchParams(location.search).get('query');
 
-  //default image for mapping fails
-const DefaultImage = function(e){
-    e.target.src= cincinnati_stock;
-}
+//   //default image for mapping fails
+// const DefaultImage = function(e){
+//     e.target.src= cincinnati_stock;
+// }
 
 
   // Fetch search results
