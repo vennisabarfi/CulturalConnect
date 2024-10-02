@@ -110,8 +110,8 @@
   padding: 10px 20px;
   margin: 8px;
   border-radius: 5px;
-  border: 1px solid #DE3163;
-  color: #DE3163;
+  border: 1px solid rgb(139, 21, 84);
+  color: rgb(139, 21, 84);
   text-decoration: none; /* Remove underline */
   font-weight: bold; /* Make text bold */
   display: inline-block; /* Ensure it takes up space */
@@ -121,14 +121,14 @@
 .paginationBttns a:hover,
 .paginationBttns a:focus {
   color: white;
-  background-color: #DE3163;
+  background-color: rgb(139, 21, 84);
   outline: none; /* Remove focus outline */
   cursor:pointer;
 }
 
 .paginationActive a {
   color: white;
-  background-color: #DE3163;
+  background-color: rgb(139, 21, 84);
 }
 
 .filter-box{
@@ -140,7 +140,7 @@
   padding: 3%;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 15px;
-  background-color: #e64875;
+  background-color: rgb(139, 21, 84);
 
 
   /* border-color: white;  */

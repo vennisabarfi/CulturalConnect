@@ -58,15 +58,40 @@
     .cincy-planners{
       font-family: Arial, Helvetica, sans-serif;
       color:  rgb(139, 21, 84);
+      padding-right: 10%;
+      margin-top: 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-left: 12%;
+      min-width: 50%;
 
     }
     .cincy-planners span{
       font-size: 1.5em;
     }
 
-    .planner{
+    .cincy-planner{
       display: flex;
       flex-direction: row;
+      padding: 6%;
+     
+    }
+    .cincy-planner span{
+      width: 100px;
+      /* overflow: hidden;  */
+    }
+
+    .cincy-planners-list{
+      list-style-type: none;
+    }
+
+    .cincy-planners-image{
+      width: 100px;
     }
 
   
