@@ -266,7 +266,7 @@ FROM (
         type, 
         q
     FROM
-        events, websearch_to_tsquery('` + queryParam + `') q
+        events, websearch_to_tsquery('$1') q
     WHERE
         tsv @@ q
     ORDER BY
@@ -276,7 +276,7 @@ FROM (
 ) AS subquery;`
 	fmt.Println(query)
 
-	row := pool.QueryRowContext(ctx, query)
+	row := pool.QueryRowContext(ctx, query, queryParam)
 
 	// map onto database
 	err = row.Scan(&event.ID, &event.DisplayImage,

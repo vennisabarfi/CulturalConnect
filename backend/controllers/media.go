@@ -92,12 +92,12 @@ func ViewMediaByTag(c *gin.Context) {
 
 	//tag parameter. add error handling
 	tagParam := c.Param("tag")
-	// if err != nil {
-	// 	c.IndentedJSON(http.StatusBadRequest, gin.H{
-	// 		"message": "Invalid media parameter/tag",
-	// 	})
-	// 	return
-	// }
+
+	// Validate the parameter
+	if tagParam == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Media Type Parameter is required"})
+		return
+	}
 
 	//open database connection
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))

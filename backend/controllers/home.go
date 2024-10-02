@@ -74,7 +74,7 @@ func HomeSearch(c *gin.Context) {
         NULL::text AS tag,      -- Added to match media query
         NULL::text AS service_type -- Added to match businesses query
     FROM
-        events, websearch_to_tsquery('` + queryParam + `') q
+        events, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -101,7 +101,7 @@ media_query AS (
         tag,
         NULL::text AS service_type -- Added to match businesses query
     FROM
-        media, websearch_to_tsquery('` + queryParam + `') q
+        media, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -128,7 +128,7 @@ businesses_query AS (
         NULL::text AS tag,
         service_type
     FROM
-        businesses, websearch_to_tsquery('` + queryParam + `') q
+        businesses, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -155,7 +155,7 @@ resources_query AS (
         NULL::text AS tag,     -- Added to match media query
         NULL::text AS service_type -- Added to match businesses query
     FROM
-        resources, websearch_to_tsquery('` + queryParam + `') q
+        resources, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -177,7 +177,7 @@ LIMIT 10;
 `
 	// fmt.Println(query)
 
-	rows, err := pool.Query(query) //uses ctx internally
+	rows, err := pool.Query(query, queryParam) //uses ctx internally
 
 	if err != nil {
 		print(err)

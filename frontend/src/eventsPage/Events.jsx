@@ -24,6 +24,14 @@ export default function Events(){
   <span><InstagramEmbed url="https://www.instagram.com/reel/DAMMdjMvLbG/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" width={328} /></span>
   </div>
 
+  <div className='cincy-planners'>
+    <span>Cincy party planners</span>
+      <div className='planner'>
+        
+
+      </div>
+  </div>
+
 
 
  
