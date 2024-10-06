@@ -23,7 +23,7 @@ func main() {
 	fmt.Println(os.Getenv("DATABASE_URL"))
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	fmt.Print(os.Getenv("DATABASE_URL"))
+
 	if err != nil {
 		log.Fatal("Error opening database connection", err)
 	} else {
