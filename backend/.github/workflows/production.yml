@@ -1,0 +1,29 @@
+name: Deploy Cincy-Connect to Production
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.22.4 
+
+    - name: Build the app
+      run: go build -v ./...
+
+    - name: Deploy to Railway # or any other hosting platform
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      run: |
+        echo "Deploying backend with environmental variables"
+       
