@@ -1,6 +1,6 @@
 // import 'beercss'
-import './Resource.css'
-import axios from 'axios'
+import './Resource.css';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
@@ -23,7 +23,8 @@ export default function Resource(){
     const filteredResources = resources.filter((resource)=>{
       const matchesText = 
       resource.org_name.toLowerCase().includes(filter.toLowerCase()) ||
-      resource.location.toLowerCase().includes(filter.toLowerCase()) 
+      resource.location.toLowerCase().includes(filter.toLowerCase()) ||
+      resource.description.toLowerCase().includes(filter.toLowerCase())
 
       const matchesType = checked.size ===0 || checked.has(resource.type);
       return matchesText && matchesType
@@ -107,9 +108,11 @@ function iconMovePodcast(){
   if (icon.style.transform === 'rotate(90deg)'){
           icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
           filter_box.style.display = 'block';
+          filter_box.style.marginLeft = '9%';
           checkbox.style.display = 'block';
+          checkbox.style.marginLeft = '9%';
          
-
+ 
           // dropdownMenu.style.display = 'none'; // hide dropdown menu
   }else{
       icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees
@@ -119,12 +122,17 @@ function iconMovePodcast(){
   }
 }
 
+//google maps location
+ 
+
   
 
     return(
         <>
-         <main className="home-body">
-   <NavigationBar/>
+        
+         <main className="resource-body">
+         <NavigationBar/>
+ 
    
    
 
@@ -142,6 +150,7 @@ function iconMovePodcast(){
   </div>
 
   {/* Mobile/Smaller Screen Responsive Filter */}
+  
   <div className='toggle-filter'> <span>Filter Resources</span> <svg onClick={iconMovePodcast} id="arrow-icon-1" className="filter-arrow" fill="rgb(139, 21, 84);" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg> </div>
   <div id='mobile-filter-box' className='mobile-filter-box'>
     {/* input search box */}
@@ -169,11 +178,11 @@ function iconMovePodcast(){
      {filteredResources.slice(pagesVisited, pagesVisited + resourcesPerPage).map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
-        <img className="resources-image" alt="organization-image" src={ngo_stock}></img>
+        <img className="resources-image" alt="organization-image" src={resource.display_image} onError={ngo_stock}></img>
         <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
         <p>Type: {resource.type}</p>
-        <p className='resource-location'><svg className='location-icon' xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="30px" fill="#5f6368"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>{resource.location}</p>
+        <p className='resource-location'><svg className='location-icon' xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="30px" fill="#5f6368"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg><a target="_blank" href={"http://maps.google.com/?q=" + resource.location} >{resource.location}</a></p>
         <span> Website:<a href={resource.website} target="_blank" rel="noopener noreferrer"> {resource.website}</a> </span>
         </li>
         

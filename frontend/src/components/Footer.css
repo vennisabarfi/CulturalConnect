@@ -41,7 +41,7 @@
 }
 
 .footer-section ul li a:hover {
-    color: black;
+    color: rgb(139, 21, 84);
     font-weight: bolder;
     text-decoration: underline;
 }
