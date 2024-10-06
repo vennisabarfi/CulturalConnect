@@ -12,25 +12,25 @@ import (
 )
 
 type Media struct {
-	ID           int64          `json:"id"`
-	Name         string         `json:"name"`
-	DisplayImage sql.NullString `json:"display_image"`
-	Website      string         `json:"website"`
-	Description  string         `json:"description"`
-	Tag          string         `json:"tag"`
-	TSV          string         `json:"tsv"`
-	CreatedAt    string         `json: created_at`
-	DeletedAt    string         `json: deleted_at`
+	ID           int64  `json:"id"`
+	Name         string `json:"name"`
+	DisplayImage string `json:"display_image"`
+	Website      string `json:"website"`
+	Description  string `json:"description"`
+	Tag          string `json:"tag"`
+	TSV          string `json:"tsv"`
+	CreatedAt    string `json: created_at`
+	DeletedAt    string `json: deleted_at`
 }
 
 func InsertMedia(c *gin.Context) {
 	var body struct {
-		Name         string         `json:"name" binding:"required"`
-		DisplayImage sql.NullString `json:"display_image"`
-		Website      string         `json:"website" binding:"required"`
-		Description  string         `json:"description" binding:"required"`
-		Tag          string         `json:"tag" binding:"required"`
-		TSV          string         `json:"tsv"`
+		Name         string `json:"name" binding:"required"`
+		DisplayImage string `json:"display_image"`
+		Website      string `json:"website" binding:"required"`
+		Description  string `json:"description" binding:"required"`
+		Tag          string `json:"tag" binding:"required"`
+		TSV          string `json:"tsv"`
 	}
 
 	// if error with fields
@@ -92,12 +92,12 @@ func ViewMediaByTag(c *gin.Context) {
 
 	//tag parameter. add error handling
 	tagParam := c.Param("tag")
-	// if err != nil {
-	// 	c.IndentedJSON(http.StatusBadRequest, gin.H{
-	// 		"message": "Invalid media parameter/tag",
-	// 	})
-	// 	return
-	// }
+
+	// Validate the parameter
+	if tagParam == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Media Type Parameter is required"})
+		return
+	}
 
 	//open database connection
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))

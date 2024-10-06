@@ -11,22 +11,22 @@ import (
 
 // omitempty will ensure null values can be accomodated
 type Results struct {
-	ID                  string         `json:"id"`
-	DisplayImage        sql.NullString `json:"display_image"`
-	OrganizerName       *string        `json:"organizer_name,omitempty"`
-	Name                *string        `json:"name,omitempty"` // For media and businesses
-	Description         *string        `json:"description,omitempty"`
-	DescriptionHeadline *string        `json:"description_headline,omitempty"`
-	Location            *string        `json:"location,omitempty"`
-	Date                *string        `json:"date,omitempty"`
-	Time                *string        `json:"time,omitempty"`
-	Website             *string        `json:"website,omitempty"`
-	Type                *string        `json:"type,omitempty"`
-	Tag                 *string        `json:"tag,omitempty"`          // For media
-	ServiceType         *string        `json:"service_type,omitempty"` // For businesses
-	Email               *string        `json:"email,omitempty"`
-	PhoneNumber         *string        `json:"phone_number,omitempty"`
-	Rank                string         `json:"rank"` // Rank as a string
+	ID                  string  `json:"id"`
+	DisplayImage        string  `json:"display_image"`
+	OrganizerName       *string `json:"organizer_name,omitempty"`
+	Name                *string `json:"name,omitempty"` // For media and businesses
+	Description         *string `json:"description,omitempty"`
+	DescriptionHeadline *string `json:"description_headline,omitempty"`
+	Location            *string `json:"location,omitempty"`
+	Date                *string `json:"date,omitempty"`
+	Time                *string `json:"time,omitempty"`
+	Website             *string `json:"website,omitempty"`
+	Type                *string `json:"type,omitempty"`
+	Tag                 *string `json:"tag,omitempty"`          // For media
+	ServiceType         *string `json:"service_type,omitempty"` // For businesses
+	Email               *string `json:"email,omitempty"`
+	PhoneNumber         *string `json:"phone_number,omitempty"`
+	Rank                string  `json:"rank"` // Rank as a string
 }
 
 //search whole database
@@ -74,7 +74,7 @@ func HomeSearch(c *gin.Context) {
         NULL::text AS tag,      -- Added to match media query
         NULL::text AS service_type -- Added to match businesses query
     FROM
-        events, websearch_to_tsquery('` + queryParam + `') q
+        events, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -101,7 +101,7 @@ media_query AS (
         tag,
         NULL::text AS service_type -- Added to match businesses query
     FROM
-        media, websearch_to_tsquery('` + queryParam + `') q
+        media, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -128,7 +128,7 @@ businesses_query AS (
         NULL::text AS tag,
         service_type
     FROM
-        businesses, websearch_to_tsquery('` + queryParam + `') q
+        businesses, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -155,7 +155,7 @@ resources_query AS (
         NULL::text AS tag,     -- Added to match media query
         NULL::text AS service_type -- Added to match businesses query
     FROM
-        resources, websearch_to_tsquery('` + queryParam + `') q
+        resources, websearch_to_tsquery($1) q
     WHERE
         tsv @@ q
     ORDER BY
@@ -177,7 +177,7 @@ LIMIT 10;
 `
 	// fmt.Println(query)
 
-	rows, err := pool.Query(query) //uses ctx internally
+	rows, err := pool.Query(query, queryParam) //uses ctx internally
 
 	if err != nil {
 		print(err)
