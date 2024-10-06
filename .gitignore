@@ -3,3 +3,5 @@ env/
 backend/.env
 
 backend/tmp/
+
+backend/tmp/.runner-build.exe
