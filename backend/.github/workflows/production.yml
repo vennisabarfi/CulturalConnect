@@ -26,4 +26,4 @@ jobs:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
       run: |
         echo "Deploying backend with environmental variables"
-       
+        

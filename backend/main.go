@@ -40,7 +40,7 @@ func main() {
 	} else {
 		fmt.Println("Database pinged successfully")
 	}
-
+	fmt.Println("Yep")
 	// home handlers
 	home := r.Group("/home")
 	{
