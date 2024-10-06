@@ -9,30 +9,31 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq" // postgres driver
 )
 
 var pool *sql.DB
 
-// // load env file
-// func LoadEnv() {
-// 	err := godotenv.Load(".env")
-// 	if err != nil {
-// 		log.Fatal("Error loading .env file.", err)
-// 	}
-// 	fmt.Println(".env file loaded successfully!")
-// }
+// load env file
+func LoadEnv() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading .env file.", err)
+	}
+	fmt.Println(".env file loaded successfully!")
+}
 
 func main() {
 
-	// LoadEnv()
+	LoadEnv()
 	r := gin.Default()
 	r.Use(cors.Default())
 	// port := os.Getenv("PORT")
 
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	fmt.Print(os.Getenv("DATABASE_URL"))
+
 	if err != nil {
 		log.Fatal("Error opening database connection", err)
 	} else {
