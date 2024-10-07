@@ -20,7 +20,6 @@ func main() {
 	r.Use(cors.Default())
 	// port := os.Getenv("PORT")
 
-	fmt.Println(os.Getenv("DATABASE_URL"))
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 
@@ -32,7 +31,6 @@ func main() {
 
 	defer pool.Close()
 
-	fmt.Print("Hello I'm just here to ping")
 	//ping database
 	pingErr := pool.Ping()
 	if pingErr != nil {
@@ -40,7 +38,7 @@ func main() {
 	} else {
 		fmt.Println("Database pinged successfully")
 	}
-	fmt.Println("Yep")
+
 	// home handlers
 	home := r.Group("/home")
 	{
@@ -89,6 +87,8 @@ func main() {
 		business.GET("/view/:type", controllers.ViewBusinessByType) //view business by service type
 	}
 	port := "localhost:" + os.Getenv("PORT")
+
+	fmt.Println(os.Getenv("PORT"))
 
 	r.Run(port)
 }
