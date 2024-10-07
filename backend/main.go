@@ -15,13 +15,22 @@ import (
 
 var pool *sql.DB
 
-// load env file
+// // load env file
 func LoadEnv() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file.", err)
+	// Get the current environment
+	env := os.Getenv("ENV")
+
+	// Load .env file only if not in production
+	if env != "production" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Println("Error loading .env file")
+		}
+		log.Println("Environment: Development (loaded from .env file)")
+	} else {
+		log.Println("Environment: Production")
 	}
-	fmt.Println(".env file loaded successfully!")
+
 }
 
 func main() {
@@ -30,7 +39,6 @@ func main() {
 
 	r := gin.Default()
 	r.Use(cors.Default())
-	// port := os.Getenv("PORT")
 
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
@@ -43,13 +51,13 @@ func main() {
 
 	defer pool.Close()
 
-	//ping database
-	// pingErr := pool.Ping()
-	// if pingErr != nil {
-	// 	log.Fatal("Error pinging database", pingErr)
-	// } else {
-	// 	fmt.Println("Database pinged successfully")
-	// }
+	// ping database
+	pingErr := pool.Ping()
+	if pingErr != nil {
+		log.Fatal("Error pinging database", pingErr)
+	} else {
+		fmt.Println("Database pinged successfully")
+	}
 
 	// home handlers
 	home := r.Group("/home")
@@ -99,8 +107,6 @@ func main() {
 		business.GET("/view/:type", controllers.ViewBusinessByType) //view business by service type
 	}
 	port := "localhost:" + os.Getenv("PORT")
-
-	fmt.Println(os.Getenv("PORT"))
 
 	r.Run(port)
 }
