@@ -15,21 +15,30 @@ import (
 
 var pool *sql.DB
 
-// load env file
+// // load env file
 func LoadEnv() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file.", err)
+	// Get the current environment
+	env := os.Getenv("ENV")
+
+	// Load .env file only if not in production
+	if env != "production" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Println("Error loading .env file")
+		}
+		log.Println("Environment: Development (loaded from .env file)")
+	} else {
+		log.Println("Environment: Production")
 	}
-	fmt.Println(".env file loaded successfully!")
+
 }
 
 func main() {
 
 	LoadEnv()
+
 	r := gin.Default()
 	r.Use(cors.Default())
-	// port := os.Getenv("PORT")
 
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
@@ -42,8 +51,7 @@ func main() {
 
 	defer pool.Close()
 
-	fmt.Print("Hello I'm just here to ping")
-	//ping database
+	// ping database
 	pingErr := pool.Ping()
 	if pingErr != nil {
 		log.Fatal("Error pinging database", pingErr)
