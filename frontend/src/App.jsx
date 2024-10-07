@@ -24,7 +24,6 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/resources" element={<Resource />} />
           <Route path="/media" element={<Media />} />
-          <Route path="/business" element={<Business/>} />
           <Route path="/search" element={<Search />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/search-404" element={<NotFoundSearch />} />
