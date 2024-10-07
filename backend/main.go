@@ -9,12 +9,24 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq" // postgres driver
 )
 
 var pool *sql.DB
 
+// load env file
+func LoadEnv() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading .env file.", err)
+	}
+	fmt.Println(".env file loaded successfully!")
+}
+
 func main() {
+
+	LoadEnv()
 
 	r := gin.Default()
 	r.Use(cors.Default())
@@ -32,12 +44,12 @@ func main() {
 	defer pool.Close()
 
 	//ping database
-	pingErr := pool.Ping()
-	if pingErr != nil {
-		log.Fatal("Error pinging database", pingErr)
-	} else {
-		fmt.Println("Database pinged successfully")
-	}
+	// pingErr := pool.Ping()
+	// if pingErr != nil {
+	// 	log.Fatal("Error pinging database", pingErr)
+	// } else {
+	// 	fmt.Println("Database pinged successfully")
+	// }
 
 	// home handlers
 	home := r.Group("/home")
