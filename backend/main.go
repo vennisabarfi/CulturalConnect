@@ -66,12 +66,12 @@ func main() {
 	}
 
 	// user handlers
-	user := r.Group("/user-auth")
-	{
-		user.POST("/register", controllers.CreateUser)
-		user.POST("/login", controllers.LoginUser)
-		user.POST("/logout", controllers.LogoutUser)
-	}
+	// user := r.Group("/user-auth")
+	// {
+	// 	user.POST("/register", controllers.CreateUser)
+	// 	user.POST("/login", controllers.LoginUser)
+	// 	user.POST("/logout", controllers.LogoutUser)
+	// }
 
 	//resource handlers
 	resource := r.Group("/resource")
@@ -106,6 +106,11 @@ func main() {
 		business.POST("/create", controllers.InsertBusiness)
 		business.GET("/view/:type", controllers.ViewBusinessByType) //view business by service type
 	}
+
+	// For all other routes, serve the index.html
+	r.NoRoute(func(c *gin.Context) {
+		c.File(".index.html")
+	})
 	port := "localhost:" + os.Getenv("PORT")
 
 	r.Run(port)

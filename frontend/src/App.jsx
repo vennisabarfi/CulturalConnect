@@ -27,6 +27,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/search-404" element={<NotFoundSearch />} />
+          <Route path="*" element={<NotFound />} />
           
         </Routes>
       </BrowserRouter>
