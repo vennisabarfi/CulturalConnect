@@ -37,20 +37,13 @@ func main() {
 
 	LoadEnv()
 
-	r := gin.Default()
+	// r := gin.Default()
 	// r.Use(cors.Default())
 
-	//cloudflare proxies
-	r.SetTrustedProxies([]string{"173.245.48.0/20", "103.21.244.0/22", "103.22.200.0/22", "103.31.4.0/22", "141.101.64.0/18", "108.162.192.0/18", "190.93.240.0/20", "188.114.96.0/20", "197.234.240.0/22", "198.41.128.0/17", "162.158.0.0/15", "104.16.0.0/13", "104.24.0.0/14", "172.64.0.0/13", "131.0.72.0/22"})
+	r := gin.New()
 
 	//specify cors
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://cincygaypages.com"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-	}))
+	r.Use(cors.Default())
 
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
@@ -123,6 +116,7 @@ func main() {
 	r.NoRoute(func(c *gin.Context) {
 		c.File(".index.html")
 	})
+
 	port := "localhost:" + os.Getenv("PORT")
 
 	r.Run(port)
