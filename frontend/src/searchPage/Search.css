@@ -162,7 +162,10 @@
       }
 
       .search-pagination{
-        margin-left: 9%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
       }
 
       .home-router a{
