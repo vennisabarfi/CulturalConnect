@@ -62,12 +62,12 @@ function toggleMenu() {
       onClick={() => handleTabClick('/')}
       className={getActiveClass('/')}>
         Home</a></li>
-      <li>
+      {/* <li>
       <a 
       href="/events"  
       onClick={() => handleTabClick('/events')}
       className={getActiveClass('/events')}>
-      Events</a></li>
+      Events</a></li> */}
 
       <li>
       <a 
@@ -83,11 +83,11 @@ function toggleMenu() {
       className={getActiveClass('/resources')}>
         Resources</a>
         {/* drop-down */}
-        <ul id='drop-down-items'>
+        {/* <ul id='drop-down-items'>
         <li><a href="#">Product 1</a></li>
         <li><a href="#">Product 2</a></li>
         <li><a href="#">Product 3</a></li>
-        </ul>
+        </ul> */}
         
         </li>
 

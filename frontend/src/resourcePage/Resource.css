@@ -291,6 +291,15 @@
   /* transform: rotate(90deg); */
 }
 
+#mobile-filter-checkbox {
+  display: none;
+  margin-left: 9%;
+}
+
+#mobile-filter-box {
+  display: none;
+  margin-left: 9%;
+}
 
 
 

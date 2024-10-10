@@ -86,3 +86,61 @@ func ViewBusinessByType(c *gin.Context) {
 	})
 
 }
+
+// view all businesses
+func ViewBusinesses(c *gin.Context) {
+	//open database connection
+	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	if err != nil {
+		log.Fatal("Error opening database connection")
+	}
+
+	defer pool.Close()
+
+	query := "SELECT * FROM businesses"
+
+	rows, err := pool.Query(query) //uses ctx internally
+	if err != nil {
+		print(err)
+	}
+	defer rows.Close()
+
+	//initialize array of resources
+	var businesses []Business
+
+	// Loop through rows. finds memory address and map onto databases
+	for rows.Next() {
+		var business Business
+
+		// Scan each row into the resource fields and displayImageData
+		if err := rows.Scan(&business.ID, &business.DisplayImage, &business.BusinessName, &business.Description,
+			&business.Location, &business.Website,
+			&business.ServiceType, &business.Email, &business.Phone, &business.TSV, &business.CreatedAt,
+			&business.DeletedAt); err != nil {
+
+			// Handle errors during scanning
+			c.IndentedJSON(http.StatusBadRequest, gin.H{
+				"Error retrieving businesses": err,
+			})
+			log.Print("Error retrieving businesses from database:", err)
+			return
+		}
+
+		// Append the resource to the resources slice
+		businesses = append(businesses, business)
+	}
+
+	// Handle the case where no rows are found
+	if err == sql.ErrNoRows {
+		c.IndentedJSON(http.StatusNotFound, gin.H{
+			"message": "No business found",
+		})
+		return
+	}
+
+	// Return the found resources as JSON
+	c.IndentedJSON(http.StatusOK, gin.H{
+		"Businesses Found": businesses,
+	})
+
+}

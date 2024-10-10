@@ -130,12 +130,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-right: 5%;
     margin-bottom: 2%;
   }
 
   .home-router a{
     color: rgb(139, 21, 84);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   
   }
 
@@ -170,7 +173,10 @@
 
       .home-router a{
         color: rgb(139, 21, 84);
-        margin-right: 2%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
       }
 
 

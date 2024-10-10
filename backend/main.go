@@ -37,14 +37,12 @@ func main() {
 
 	LoadEnv()
 
-	// r := gin.Default()
-	// r.Use(cors.Default())
-	gin.SetMode(gin.ReleaseMode)
+	// gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
-	//specify cors
 	r.Use(cors.Default())
 
+	//Test health of server
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "healthy"})
 	})
@@ -113,6 +111,7 @@ func main() {
 
 	{
 		business.POST("/create", controllers.InsertBusiness)
+		business.GET("/view", controllers.ViewBusinesses)
 		business.GET("/view/:type", controllers.ViewBusinessByType) //view business by service type
 	}
 
