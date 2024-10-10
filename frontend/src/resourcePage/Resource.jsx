@@ -56,7 +56,7 @@ export default function Resource(){
     async function fetchResourceData(){
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_API}/resource/view`);
-
+        console.log("Backend API is: " + import.meta.env.VITE_BACKEND_API);
         setResources(response.data["Resources Found"]);
         
 
@@ -126,7 +126,8 @@ function iconMovePodcast(){
 //google maps location
  
 
-  
+
+
 
     return(
         <>
