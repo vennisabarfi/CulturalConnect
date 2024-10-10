@@ -55,7 +55,8 @@ export default function Resource(){
   useEffect(function(){
     async function fetchResourceData(){
       try {
-        const response = await axios.get('http://localhost:3000/resource/view');
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_API}/resource/view`);
+
         setResources(response.data["Resources Found"]);
         
 
