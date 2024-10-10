@@ -120,8 +120,10 @@ func main() {
 	r.NoRoute(func(c *gin.Context) {
 		c.File(".index.html")
 	})
+	r.SetTrustedProxies([]string{"0.0.0.0/0"})
 
-	port := "localhost:" + os.Getenv("PORT")
+	// port := "0.0.0:" + os.Getenv("PORT")
+	r.Run("0.0.0.0:3000")
 
-	r.Run(port)
+	// r.Run(port)
 }
