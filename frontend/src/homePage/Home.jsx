@@ -1,7 +1,6 @@
 
 import "./Home.css"
 import Footer from "../components/Footer";
-import pride_event from "./pride_event.jpg"
 import NavigationBar from "../components/NavigationBar";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -11,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home(){
 
-  const [events, setEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
   const [query, setQuery] = useState('');
   const [eventServerMessage, setEventServerMessage] = useState('');
   const [eventServerErrors, setEventServerErrors] = useState('');
@@ -27,30 +26,30 @@ export default function Home(){
 
   
 
-    // handle event top data
-   useEffect(function(){
-      async function fetchEventTopData(){
-        try {
-          const response = await axios.get('http://localhost:3000/event/view-top');
-          setEvents(response.data["Top Events Found"])
+  //   // handle event top data
+  //  useEffect(function(){
+  //     async function fetchEventTopData(){
+  //       try {
+  //         const response = await axios.get('http://localhost:3000/event/view-top');
+  //         setEvents(response.data["Top Events Found"])
   
-          if (response.status === 200) {
+  //         if (response.status === 200) {
   
-            setEventServerMessage(response.data.message)
-            console.log(response.data)
+  //           setEventServerMessage(response.data.message)
+  //           console.log(response.data)
             
             
-        }
-        } catch (error) {
-          // add functionality to redirect to error page (404 page)
-          setEventServerErrors(error.response.data.message)
+  //       }
+  //       } catch (error) {
+  //         // add functionality to redirect to error page (404 page)
+  //         setEventServerErrors(error.response.data.message)
               
-              console.log(`Error retrieving resources information: ${error.response.data.message}`)
-        }
-      }
+  //             console.log(`Error retrieving resources information: ${error.response.data.message}`)
+  //       }
+  //     }
       
-      fetchEventTopData();
-    }, []); 
+  //     fetchEventTopData();
+  //   }, []); 
   
 
     

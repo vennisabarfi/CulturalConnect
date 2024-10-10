@@ -33,7 +33,7 @@ export default function Search() {
   useEffect(function () {
     if (query) {
       try {
-        axios.get(`http://localhost:3000/home/search?query=${encodeURIComponent(query)}`)
+        axios.get(`https://valuable-donelle-cincygaypages-9226d127.koyeb.app/home/search?query=${encodeURIComponent(query)}`)
           .then(function (response) {
             setSearchResults(response.data["Results Found"]);
 
