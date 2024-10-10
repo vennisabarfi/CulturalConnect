@@ -40,10 +40,14 @@ func main() {
 	// r := gin.Default()
 	// r.Use(cors.Default())
 
-	r := gin.New()
+	r := gin.Default()
 
 	//specify cors
 	r.Use(cors.Default())
+
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "healthy"})
+	})
 
 	// connect to database
 	pool, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
