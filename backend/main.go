@@ -39,7 +39,7 @@ func main() {
 
 	// r := gin.Default()
 	// r.Use(cors.Default())
-
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
 	//specify cors

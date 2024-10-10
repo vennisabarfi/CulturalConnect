@@ -100,28 +100,22 @@ console.log(debouncedFilter); //to test
 
 
 //filter component
-function iconMovePodcast(){
+function iconMovePodcast() {
   const icon = document.getElementById('arrow-icon-1');
   const filter_box = document.getElementById('mobile-filter-box');
   const checkbox = document.getElementById('mobile-filter-checkbox');
-  // const dropdownMenu = document.getElementById('dropdown-items-2');
 
-  if (icon.style.transform === 'rotate(90deg)'){
-          icon.style.transform = 'rotate(0deg)'; //rotate to 0 degrees
-          filter_box.style.display = 'block';
-          filter_box.style.marginLeft = '9%';
-          checkbox.style.display = 'block';
-          checkbox.style.marginLeft = '9%';
-         
- 
-          // dropdownMenu.style.display = 'none'; // hide dropdown menu
-  }else{
-      icon.style.transform = 'rotate(90deg)'; //rotate to 0 degrees
-      filter_box.style.display = 'none';
-      checkbox.style.display = 'none';
-      // dropdownMenu.style.display = 'block'; // hide dropdown menu
+  if (icon.style.transform === 'rotate(90deg)') {
+    icon.style.transform = 'rotate(0deg)'; // Rotate to 0 degrees
+    filter_box.style.display = 'block';    // Show filter box
+    checkbox.style.display = 'block';      // Show checkbox
+  } else {
+    icon.style.transform = 'rotate(90deg)'; // Rotate to 90 degrees
+    filter_box.style.display = 'none';      // Hide filter box
+    checkbox.style.display = 'none';        // Hide checkbox
   }
 }
+
 
 //google maps location
  
@@ -153,7 +147,8 @@ function iconMovePodcast(){
 
   {/* Mobile/Smaller Screen Responsive Filter */}
   
-  <div className='toggle-filter'> <span>Filter Resources</span> <svg onClick={iconMovePodcast} id="arrow-icon-1" className="filter-arrow" fill="rgb(139, 21, 84);" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg> </div>
+  <div className='toggle-filter'> <span>Filter Resources</span> <svg onClick={iconMovePodcast} id="arrow-icon-1" className="filter-arrow" fill="rgb(139, 21, 84);" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" style={{ transform: 'rotate(90deg)' }}><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+  </div>
   <div id='mobile-filter-box' className='mobile-filter-box'>
     {/* input search box */}
     <input type="text" className='mobile-filter-search-box' value={filter}  placeholder='Find resources near you...' onChange={handleFilterChange}/>
@@ -167,8 +162,8 @@ function iconMovePodcast(){
     <input type='checkbox' value="Non-Governmental Organization" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Non-Governmental Organization")}/>
     <label>Non-Governmental Organization</label>
     <br/>
-    <input type='checkbox' value="Environmental" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Environmental")}/>
-    <label>Environmental</label>
+    <input type='checkbox' value="Youth" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Youth")}/>
+    <label>Youth Organization</label>
     </div>
 
 
@@ -215,8 +210,8 @@ function iconMovePodcast(){
     <input type='checkbox' value="Non-Governmental Organization" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Non-Governmental Organization")}/>
     <label>Non-Governmental Organization</label>
     <br/>
-    <input type='checkbox' value="Environmental" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Environmental")}/>
-    <label>Environmental</label>
+    <input type='checkbox' value="Youth" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Youth")}/>
+    <label>Youth Organization</label>
   </div>
 
   </div>

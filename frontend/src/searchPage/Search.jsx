@@ -78,6 +78,7 @@ export default function Search() {
       <NavigationBar/>
     <main className="search-body">
   
+
     
     
 

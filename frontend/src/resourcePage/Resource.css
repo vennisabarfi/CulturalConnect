@@ -22,7 +22,7 @@
 .resources-results{
 
  /* padding-top: 10%; */
- padding-right: 10%;
+  padding-right: 10%;
   margin-top: 5%;
   display: flex;
   flex-direction: column;
@@ -33,6 +33,7 @@
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 12%;
   min-width: 50%;
+ 
 
 
 }
@@ -72,6 +73,7 @@
 
  .resources-image{
   width: 40%;
+ 
  }
 
  .resources-list {
@@ -102,7 +104,9 @@
   display: flex;
   justify-content: center;
   padding: 0;
-  /* margin: 0; */
+  margin-left: 17%;
+  margin-top: 10%;
+  margin-bottom: 10%;
   
 }
 
@@ -275,7 +279,7 @@
     width: 1em; /* Makes the SVG scale with the font size */
     height: auto; /* Maintains aspect ratio */
     margin-left: 10px; /* Space between text and icon */
-    margin-top: 1%;
+    margin-top: 0.5%;
     fill: #2e2e30; /* Ensures the fill color remains consistent */
     cursor: pointer; /* Change cursor on hover */
     transform: scale(0.75); /* Adjust the scale here */
@@ -294,9 +298,29 @@
 
 @media only screen and (max-width: 478px) {
 
+  .resource-body{
+    scroll-behavior: smooth;
+  }
+
   .resources-results{
  
     margin-top: 10%;
     text-align: left;
    }
+
+   #mobile-filter-checkbox {
+    display: none;
+    margin-left: 9%;
+  }
+  
+  #mobile-filter-box {
+    display: none;
+    margin-left: 9%;
+  }
+
+  .resources-image{
+    width: 70%;
+    margin-top: 5%;
+   }
+  
 }

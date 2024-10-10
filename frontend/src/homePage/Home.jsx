@@ -2,8 +2,8 @@
 import "./Home.css"
 import Footer from "../components/Footer";
 import NavigationBar from "../components/NavigationBar";
-import axios from "axios";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -12,8 +12,7 @@ export default function Home(){
 
   // const [events, setEvents] = useState([]);
   const [query, setQuery] = useState('');
-  const [eventServerMessage, setEventServerMessage] = useState('');
-  const [eventServerErrors, setEventServerErrors] = useState('');
+
   const navigate= useNavigate();
   
 
@@ -89,8 +88,7 @@ export default function Home(){
 
 {/* div cards to show hottest events */}
 {/* Work on rendering this properly */}
-{eventServerMessage && <p className="server-message">{eventServerMessage}</p>}
-{eventServerErrors && <p className="server-error">{eventServerErrors}</p>}
+
 
 {/* <div className="card-header">
  <h2> Hottest Events</h2>
