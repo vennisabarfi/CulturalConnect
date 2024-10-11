@@ -69,7 +69,7 @@ export default function Search() {
 
     //change document tab after search
     useEffect(function(){
-      document.title = `You searched for ${query} |CincyConnect`;
+      document.title = `You searched for ${query} |Cincy Gay Pages`;
     })
  
 

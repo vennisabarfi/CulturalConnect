@@ -75,9 +75,11 @@ export default function Media(){
                 </div>
                   {/* Dropdown */}
                 <ul id="dropdown-items-1" className="dropdown-items">
+                <li><a target="_blank" href="https://soundcloud.com/thebraveeducatorpodcast"> The Brave Educator Podcast</a></li>
                     <li><a target="_blank" href="https://werehavinggaysex.com/"> We're having gay sex</a></li>
                     <li><a target="_blank" href="https://chosenfamilypodcast.com/">Chosen Family Podcast</a></li>
-                    <li><a href="/podcasts">See More...</a></li>
+                    <li><a target="_blank" href="https://open.spotify.com/show/71Yij0hErmia1AR9EqT4Dg">OUTCincinnati</a></li>
+                    {/* <li><a href="/podcasts">See More...</a></li> */}
                 </ul>
                 
                 
@@ -105,9 +107,9 @@ export default function Media(){
                 </div>
                   {/* Dropdown */}
                 <ul id="dropdown-items-2" className="dropdown-items">
-                    <li><a>Gay Movie</a></li>
-                    <li><a>Lesbian Movie</a></li>
-                    <li><a href="/movies">See More...</a></li>
+                <li><a target="_blank" href="https://www.imdb.com/title/tt19637052/"> Love Lies Bleeding</a></li>
+                <li><a target="_blank" href="https://www.netflix.com/title/81760197"> Will & Harper</a></li>
+                <li><a target="_blank" href="https://www.imdb.com/title/tt19356262/"> Drive-Away Dolls</a></li>
                 </ul>
                 
                 
@@ -135,7 +137,7 @@ export default function Media(){
                 <ul id="dropdown-items-3" className="dropdown-items">
                     <li><a target="_blank" href="https://www.netflix.com/title/70242311">Orange is the New Black</a></li>
                     <li><a target="_blank" href="https://www.disneyplus.com/series/glee/5h5XCwlaqNBK">Glee</a></li>
-                    <li><a href="shows">See More...</a></li>
+                    {/* <li><a href="shows">See More...</a></li> */}
                 </ul>
                 
                 

@@ -4,9 +4,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
-import ngo_stock from "./ngo_stock.jpg"
 import ReactPaginate from 'react-paginate';
-
+const ngo_stock ="./ngo_stock.jpg";
 
 export default function Resource(){
     const [resources, setResources] = useState([]);
@@ -16,9 +15,10 @@ export default function Resource(){
     const[filter, setFilter] = useState('');
     const [checked, setChecked] = useState(new Set()); //using a set so you can filter multiple items, else use ''
     const [debouncedFilter, setDebouncedFilter] = useState(filter); //debouncing results
-  
+
     
 
+    console.log(debouncedFilter)
     //filter by organization name or location. add input debouncing to avoid crashes
     const filteredResources = resources.filter((resource)=>{
       const matchesText = 
@@ -96,7 +96,6 @@ export default function Resource(){
     };
   }, [filter]); // The effect runs every time `filter` changes
 
-console.log(debouncedFilter); //to test
 
 
 //filter component
@@ -115,6 +114,8 @@ function iconMovePodcast() {
     checkbox.style.display = 'none';        // Hide checkbox
   }
 }
+
+
 
 
 
@@ -172,7 +173,7 @@ function iconMovePodcast() {
      {filteredResources.slice(pagesVisited, pagesVisited + resourcesPerPage).map((resource)=>(
         <ul className='resources-list'  key={resource.id}>
         <li>
-        <img className="resources-image" alt="organization-image" src={resource.display_image} onError={ngo_stock}></img>
+        {resource.display_image &&<img className="resources-image" alt="organization-image" src={resource.display_image} onError={ngo_stock}></img>}
         <h2>{resource.org_name}</h2>
         <p>{resource.description}</p>
         <p>Type: {resource.type}</p>
