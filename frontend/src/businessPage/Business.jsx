@@ -158,7 +158,7 @@ function iconMovePodcast() {
     </div>
    
     <div id = 'mobile-filter-checkbox' className='mobile-filter-checkbox'> 
-    <input type='checkbox' value="Event Planners" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Event Planners")}/>
+    <input type='checkbox' value="planners" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("planners")}/>
     <label>Event Planners</label>
     <br/>
     <input type='checkbox' value="Professional Services" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Professional Services")}/>

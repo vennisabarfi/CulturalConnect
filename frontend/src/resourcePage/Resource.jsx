@@ -6,7 +6,7 @@ import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 import ngo_stock from "./ngo_stock.jpg"
 import ReactPaginate from 'react-paginate';
-// import Pagination from '../components/Pagination';
+
 
 export default function Resource(){
     const [resources, setResources] = useState([]);
@@ -116,9 +116,6 @@ function iconMovePodcast() {
   }
 }
 
-
-//google maps location
- 
 
 
 
