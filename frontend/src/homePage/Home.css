@@ -3,14 +3,37 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @media screen  and (min-width: 768px){
 
-.home-body {
+/* .home-body {
   scroll-behavior: smooth;
   margin-bottom: -3%;
-  background-image: url("book_2.jpg");
+  background-image: url("pexels.jpg");
   background-position: 50%;
   background-size: cover;
  
+} */
+
+.home-body {
+  position: relative; /* For positioning the pseudo-element */
+  scroll-behavior: smooth;
+  margin-bottom: -3%;
+  overflow: hidden; /* Prevents the pseudo-element from overflowing */
+  
 }
+
+.home-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("pexels.jpg"); /* Background image */
+  background-position: 50%;
+  background-size: cover;
+  filter: blur(5px); /* Adjust blur value as needed */
+  z-index: -1; /* Places the background behind content */
+}
+
 
 .home-title{
   align-items: center;
@@ -50,7 +73,8 @@
   font-style: italic;
   font-weight: bolder;
   font-size: 3em;
-  color: #ED9121;
+  /* color: #ED9121; */
+  color: #e98a17;
   font-family: 'Playwrite AU QLD', sans-serif;
 
 }
@@ -209,14 +233,48 @@
 
 @media only screen and (max-width: 768px) {
 
-.home-body {
+/* .home-body {
   scroll-behavior: smooth;
   margin-bottom: -3%;
-  background-image: url("book_2.jpg");
+  background-image: url("pexels.jpg");
   background-position: 50%;
   background-size: cover;
   
   
+} */
+
+.home-body {
+  position: relative; /* For positioning the pseudo-element */
+  scroll-behavior: smooth;
+  margin-bottom: -3%;
+  overflow: hidden; /* Prevents the pseudo-element from overflowing */
+}
+
+.home-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("pexels.jpg"); /* Background image */
+  background-position: 50%;
+  background-size: cover;
+  filter: blur(1.5px); /* Adjust blur value as needed */
+  z-index: -1; /* Places the background behind content */
+}
+
+.home-title {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-shadow: 1px 1px 2px pink;
+  margin-bottom: -40px;
+  color: rgb(139, 21, 84);
+  position: relative; /* Ensures the content stays above the background */
+  z-index: 1; /* Keeps the title on top of the blurred background */
 }
 
 .home-title {
@@ -252,7 +310,8 @@
   margin-bottom: -1%;
   font-style: italic;
   font-size: 2em;
-  color: #ED9121;
+  /* color: #ED9121; */
+  color: #e98a17;
   font-family: 'Playwrite AU QLD', sans-serif;
 
 }
