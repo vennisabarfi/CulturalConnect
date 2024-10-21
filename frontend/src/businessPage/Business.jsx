@@ -115,12 +115,6 @@ function iconMovePodcast() {
   }
 }
 
-function handleImageError(e) {
-    e.target.src = 'gay-business.jpeg'; // Replace with your fallback image path
-  }
- 
-
-
 
 
     return(
@@ -162,11 +156,11 @@ function handleImageError(e) {
     <input type='checkbox' value="planners" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("planners")}/>
     <label>Event Planners</label>
     <br/>
-    <input type='checkbox' value="Professional Services" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Professional Services")}/>
-    <label>Professional Services</label>
+    <input type='checkbox' value="Restaurant/Bar" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Restaurant/Bar")}/>
+    <label>Restaurant/Bar</label>
     <br/>
-    <input type='checkbox' value="Legal Aid" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Legal Aid")}/>
-    <label>Legal Aid</label>
+    <input type='checkbox' value="Nightlife" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Nightlife")}/>
+    <label>Nightlife</label>
     </div>
 
 
@@ -178,7 +172,7 @@ function handleImageError(e) {
      {filteredBusinesses.slice(pagesVisited, pagesVisited + businessesPerPage).map((business)=>(
         <ul className='resources-list'  key={business.id}>
         <li>
-        <img className="resources-image" alt="organization-image" src={business.display_image} onError={handleImageError}></img>
+        <img className="resources-image" alt="organization-image" src={business.display_image} ></img>
         <h2>{business.business_name}</h2>
         <p>{business.description}</p>
         <p>Type: {business.service_type}</p>
@@ -214,11 +208,11 @@ function handleImageError(e) {
     <input type='checkbox' value="Event Planners" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Event Planners")}/>
     <label>Event Planners</label>
     <br/>
-    <input type='checkbox' value="Professional Services" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Professional Services")}/>
-    <label>Professional Services</label>
+    <input type='checkbox' value="Restaurant/Bar" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Restaurant/Bar")}/>
+    <label>Restaurant/Bar</label>
     <br/>
-    <input type='checkbox' value="Legal Aid" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Legal Aid")}/>
-    <label>Legal Aid</label>
+    <input type='checkbox' value="Nightlife" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Nightlife")}/>
+    <label>Nightlife</label>
   </div>
 
   </div>

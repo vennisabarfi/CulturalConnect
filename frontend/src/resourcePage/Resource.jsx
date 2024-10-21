@@ -160,8 +160,8 @@ function iconMovePodcast() {
     <input type='checkbox' value="Non-Governmental Organization" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Non-Governmental Organization")}/>
     <label>Non-Governmental Organization</label>
     <br/>
-    <input type='checkbox' value="Youth" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Youth")}/>
-    <label>Youth Organization</label>
+    <input type='checkbox' value="Legal Aid" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Legal Aid")}/>
+    <label>Legal Aid</label>
     </div>
 
 
@@ -208,8 +208,8 @@ function iconMovePodcast() {
     <input type='checkbox' value="Non-Governmental Organization" id="checkbox-1" onChange={handleCheckedChange} checked={checked.has("Non-Governmental Organization")}/>
     <label>Non-Governmental Organization</label>
     <br/>
-    <input type='checkbox' value="Youth" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Youth")}/>
-    <label>Youth Organization</label>
+    <input type='checkbox' value="Legal Aid" id="checkbox-2" onChange={handleCheckedChange} checked={checked.has("Legal Aid")}/>
+    <label>Legal Aid</label>
   </div>
 
   </div>
