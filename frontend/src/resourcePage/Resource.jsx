@@ -63,7 +63,7 @@ export default function Resource(){
         if (response.status === 200) {
 
           setServerMessage(response.data.message)
-          console.log(response.data)
+         
           
           
       }
