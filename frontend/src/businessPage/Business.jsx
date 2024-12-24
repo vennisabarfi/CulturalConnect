@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import ReactPaginate from 'react-paginate';
 // import Pagination from '../components/Pagination';
 import { BACKEND_API } from '../Constants';
-
+ 
 export default function Business(){
     const [businesses, setBusinesses] = useState([]);
     const [serverMessage, setServerMessage] = useState('');
