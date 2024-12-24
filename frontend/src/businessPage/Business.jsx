@@ -6,6 +6,7 @@ import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 import ReactPaginate from 'react-paginate';
 // import Pagination from '../components/Pagination';
+import { BACKEND_API } from '../Constants';
 
 export default function Business(){
     const [businesses, setBusinesses] = useState([]);
@@ -54,7 +55,7 @@ export default function Business(){
   useEffect(function(){
     async function fetchResourceData(){
       try {
-        const response = await axios.get(`https://valuable-donelle-cincygaypages-9226d127.koyeb.app/business/view`);
+        const response = await axios.get(`${BACKEND_API}/business/view`);
        
         setBusinesses(response.data["Businesses Found"]);
         

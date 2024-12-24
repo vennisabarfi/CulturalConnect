@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 import ReactPaginate from 'react-paginate';
+import { BACKEND_API } from '../Constants';
 const ngo_stock ="./ngo_stock.jpg";
 
 export default function Resource(){
@@ -55,7 +56,7 @@ export default function Resource(){
   useEffect(function(){
     async function fetchResourceData(){
       try {
-        const response = await axios.get(`https://valuable-donelle-cincygaypages-9226d127.koyeb.app/resource/view`);
+        const response = await axios.get(`${BACKEND_API}/resource/view`);
        
         setResources(response.data["Resources Found"]);
         
