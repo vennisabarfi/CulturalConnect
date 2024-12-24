@@ -53,7 +53,7 @@ export default function Resource(){
     const resourcesPerPage = 10; //specify how much data to show per page
     const pagesVisited = pageNumber * resourcesPerPage;
 
-  useEffect(function(){
+  useEffect(function(){  
     async function fetchResourceData(){
       try { 
         const response = await axios.get(`${BACKEND_API}/resource/view`);
