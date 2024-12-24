@@ -42,7 +42,7 @@ export default function Search() {
                
             }if (response.status === 200) {
               setEventServerMessage(response.data.message);
-              console.log(response.data);
+              
          
             }
             if(response.status != 200){
