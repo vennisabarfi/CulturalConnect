@@ -55,11 +55,11 @@ export default function Resource(){
 
   useEffect(function(){
     async function fetchResourceData(){
-      try {
+      try { 
         const response = await axios.get(`${BACKEND_API}/resource/view`);
        
         setResources(response.data["Resources Found"]);
-   
+        console.log(response.data["Resources Found"])
 
         if (response.status === 200) {
 
