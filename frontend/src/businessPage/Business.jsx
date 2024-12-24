@@ -1,5 +1,5 @@
 // import 'beercss'
-import './Business.css';
+import './Business.css'; 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import NavigationBar from '../components/NavigationBar';
@@ -58,6 +58,7 @@ export default function Business(){
         const response = await axios.get(`${BACKEND_API}/business/view`);
        
         setBusinesses(response.data["Businesses Found"]);
+
         
 
         if (response.status === 200) {
