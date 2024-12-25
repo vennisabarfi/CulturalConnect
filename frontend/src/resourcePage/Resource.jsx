@@ -59,7 +59,7 @@ export default function Resource(){
         const response = await axios.get(`${BACKEND_API}/resource/view`);
        
         setResources(response.data["Resources Found"]);
-        console.log(response.data["Resources Found"])
+      
 
         if (response.status === 200) {
 
