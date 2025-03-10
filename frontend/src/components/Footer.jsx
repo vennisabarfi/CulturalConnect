@@ -2,9 +2,12 @@ import './Footer.css'
 
 
 export default function Footer(){
+
+    const CurrentDate = new Date().getFullYear()
     return(
         <>
          <footer className="footer">
+          
         <div className="footer-content">
             <div className="footer-section">
                 <h3>About Us</h3>
@@ -47,7 +50,7 @@ export default function Footer(){
             </div>
         </div>
         <div className="footer-bottom">
-            <p>&copy; 2024 CincyConnect. All rights reserved.</p>
+            <p>&copy; {CurrentDate} CincyConnect. All rights reserved.</p>
         </div>
     </footer>
         </>
