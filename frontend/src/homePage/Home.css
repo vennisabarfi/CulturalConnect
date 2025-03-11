@@ -269,7 +269,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("pexels.jpg"); /* Background image */
+  /* background-image: url("pexels.jpg"); Background image */
+  background-color: rgb(233, 225, 215);
   background-position: 50%;
   background-size: cover;
   filter: blur(1.5px); /* Adjust blur value as needed */
@@ -283,8 +284,8 @@
   flex-direction: column;
   width: 100%;
   text-shadow: 1px 1px 2px pink;
-  margin-bottom: -40px;
   color: rgb(139, 21, 84);
+  margin-bottom: -40px;
   position: relative; /* Ensures the content stays above the background */
   z-index: 1; /* Keeps the title on top of the blurred background */
 }
@@ -295,26 +296,31 @@
   display: flex;
   flex-direction: column;
   /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
   font-size: 25px;
   text-align: center;
   width: 100%;
   text-shadow: 1px 1px 2px pink;
   margin-bottom: -20px;
-  color: rgb(139, 21, 84);
-
+  
 }
 
 .home-title h1{
   margin-bottom: -5%;
   font-size: 3em;
-  font-family: 'Roboto';
+  font-family: "Nunito", sans-serif;
+  color: rgb(255, 250, 240);
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(139, 21, 84);
 }
 
 .home-title h2{
   margin-bottom: -1%;
   font-size: 2em;
-  font-family: 'Roboto';
+  font-family: "Nunito", sans-serif;
+  color: rgb(255, 250, 240);
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(139, 21, 84);
 }
 
 .brand-name{
@@ -323,7 +329,9 @@
   font-style: italic;
   font-size: 2em;
   /* color: #ED9121; */
-  color: #e98a17;
+  color: rgb(255, 250, 240);
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(139, 21, 84);
   font-family: 'Playwrite AU QLD', sans-serif;
 
 }
@@ -334,7 +342,7 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 20px;
   text-align: center;
   width: 100%;
