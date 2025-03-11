@@ -1,16 +1,19 @@
 
 .media-header{
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito", sans-serif;
     font-size: 2.5em;
+    color: rgb(185, 0, 99);
     
     }
 
 .media-header p{
   font-size: 0.5em;
+  font-family: "Nunito", sans-serif;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  color: rgb(185, 0, 99);
 }
   
 .media-header hr{

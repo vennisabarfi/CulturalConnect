@@ -260,7 +260,7 @@
   scroll-behavior: smooth;
   margin-bottom: -3%;
   overflow: hidden; /* Prevents the pseudo-element from overflowing */
-  background-color: rgb(255, 207, 148);
+  background-color: rgb(250, 213, 168);
 }
 
 /* .home-body::before {
@@ -387,7 +387,7 @@
   border-color: #FF91AF;
   box-sizing: border-box;
   width: 100%; /* Full width */
-  background-color: rgb(185, 0, 99);
+  background-color: rgb(211, 24, 124);
   /* border-radius: 8px; */
   margin-bottom: 10%;
 }

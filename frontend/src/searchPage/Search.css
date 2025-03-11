@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     /* color: #DE3163; */
-    color: rgb(139, 21, 84);
+    color: rgb(185, 0, 99);
 }
 
 .search-header h2{
@@ -76,7 +76,7 @@
   /* work on colors */
   .search-container h3{
     font-size: 1.5em;
-    color: rgb(139, 21, 84);
+    color: rgb(185, 0, 99);
 
   }
   
@@ -134,7 +134,7 @@
   }
 
   .home-router a{
-    color: rgb(139, 21, 84);
+    color: rgb(185, 0, 99);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -172,7 +172,7 @@
       }
 
       .home-router a{
-        color: rgb(139, 21, 84);
+        color: rgb(185, 0, 99);
         display: flex;
         flex-direction: row;
         align-items: center;
