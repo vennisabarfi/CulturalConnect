@@ -196,6 +196,10 @@ function iconMovePodcast() {
        nextLinkClassName={"nextBttn"}
       //  disabledClassName={"paginationDisabled"} removed for now
        activeClassName={"paginationActive"}
+       marginPagesDisplayed={1} // Number of pages to display at the edges
+       pageRangeDisplayed={2} // Number of pages to display in the middle
+       breakLabel={"..."} // Ellipsis for truncated pages
+       breakClassName={"paginationBreak"} // Class for the ellipsis
      />
   </div>
 
