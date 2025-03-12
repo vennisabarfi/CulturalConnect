@@ -43,33 +43,9 @@ export default function Form(){
          });
          
         
-        //  update this later
+        //  update this later. add redirection to home page or a thank you page after form is sent
          console.log(response.data)
-      
-        //  3 second delay and then navigate to home page
-        //  setTimeout(function(){
-        //     toast('Message has been sent!')
-        //     e.target.reset();
-        //  }, 500);
 
-        // //  setTimeout(function(){
-        // //     
-        // //  }, 20000);
-
-        //  setTimeout(function(){
-        //     const current_page = window.location.href;
-        //     window.location.assign(current_page);
-        //  }, 1000);
-
-        //  // when form has submitted
-         
-        
-            
-        //      console.log('Form submitted successfully:', response.data);
-             
-           
-        //      console.log("Sent!")
- 
            
  
             
@@ -91,19 +67,53 @@ export default function Form(){
 
      
         <div className="feedback-form">
-            
+
+      
         <div className="name-fields">
+
+    {/* Business/Resource Name */}
         <div className="field">
-        <label className="mb-2" htmlFor="full-name">Full Name</label>
-        {errors.full_name && <span className="form-error">This field is required</span>}
-        <input onChange={(e) => setForm({...form, name: e.target.value})} className="input" type="text" id="full-name" placeholder="Eg. Jane Doe" {...register("full_name",
+        <label className="mb-2" htmlFor="name">Business/Organization Name</label>
+        {errors.name && <span className="form-error">This field is required</span>}
+        <input onChange={(e) => setForm({...form, name: e.target.value})} className="input" type="text" id="name" placeholder="Eg. Cincinnati Organization" {...register("name",
                                                                                             {required: "This Field is required" },)}/>
         
         </div>
 
+        {/* Location */}
         <div className="field">
-        <label className="mb-2" htmlFor="email">Email</label>
-        {errors.email && <span className="form-error">{errors.email.message}</span>}
+        <label className="mb-2" htmlFor="location">Location/Address</label>
+        {errors.location && <span className="form-error">This field is required</span>}
+        <input onChange={(e) => setForm({...form, name: e.target.value})} className="input" type="text" id="location" placeholder="Eg. 123 Cincinnati, Ohio" {...register("location",
+                                                                                            {required: "This Field is required" },)}/>
+        
+        </div>
+
+        {/* Website */}
+        <div className="field">
+        <label className="mb-2" htmlFor="website">Website/Social Media</label>
+        {errors.website && <span className="form-error">This field is required</span>}
+        <input onChange={(e) => setForm({...form, name: e.target.value})} className="input" type="text" id="website" placeholder="Eg. www.cincygaypages.com" {...register("website",
+                                                                                            {required: "This Field is required" },)}/>
+        </div>
+
+        {/* Phone Number */}
+        <div className="field">
+        <label className="mb-2" htmlFor="phone">Phone Number</label>
+        {/* commented this out for now till I figure out a better way to validate */}
+        {/* {errors.phone && <span className="form-error">This field is required</span>} */}
+        <input onChange={(e) => setForm({...form, name: e.target.value})} className="input" type="text" id="phone" placeholder="Eg. +1 23..." {...register("phone",
+                                                                                            { pattern: /\d+/ },)}/>
+        </div>
+
+        
+
+       
+
+            {/* Business Email */}
+        <div className="field">
+        <label className="mb-2" htmlFor="email">Business/Organization Email Address</label>
+        {/* {errors.email && <span className="form-error">{errors.email.message}</span>} */}
         <input
   className="input"
   type="email"
@@ -111,14 +121,13 @@ export default function Form(){
   onChange={(e) => setForm({...form, name: e.target.value})}
   placeholder="example@gmail.com"
   {...register("email", {
-    required: "Email is required",
+    // required: "Email is required",
     pattern: {
       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
       message: "Invalid email address",
     },
   })}
-/>
-        
+/>      
         </div>
         
 
