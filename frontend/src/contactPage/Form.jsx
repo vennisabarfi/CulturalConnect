@@ -102,7 +102,7 @@ export default function Form(){
         <label className="mb-2" htmlFor="phone">Phone Number</label>
         {/* commented this out for now till I figure out a better way to validate */}
         {/* {errors.phone && <span className="form-error">This field is required</span>} */}
-        <input onChange={(e) => setForm({...form, name: e.target.value})} className="input" type="text" id="phone" placeholder="Eg. +1 23..." {...register("phone",
+        <input onChange={(e) => setForm({...form, name: e.target.value})} className="input" type="text" id="phone" placeholder="Eg. +1 513..." {...register("phone",
                                                                                             { pattern: /\d+/ },)}/>
         </div>
 
@@ -134,12 +134,12 @@ export default function Form(){
         </div>
 
         <div className="feedback-box">
-      <label htmlFor="feedback-area">Message</label>
-      {errors.feedback && <span className="form-error">This field is required</span>}
-      <textarea onChange={(e) => setForm({...form, name: e.target.value})} placeholder="Hi Vennisa, I want to build a website for my business and would love to connect . . ." id="feedback-area" {...register("feedback",{required: "Feedback field cannot be empty"})}/>
+      <label htmlFor="feedback-area">Optional Message/ Extra Information</label>
+      {/* {errors.feedback && <span className="form-error"></span>} */}
+      <textarea onChange={(e) => setForm({...form, name: e.target.value})} placeholder="Hi Vennisa, I want to build a website for my business and would love to connect . . ." id="feedback-area" {...register("feedback",)}/>
       {/* <Toaster className="toaster" position="top-center"/> */}
       <button className="form-button" type="submit" >
-        Send message</button>
+        Submit Form</button>
       <p className="text-sm text-muted-foreground">
         Thanks for connecting!
       </p>
