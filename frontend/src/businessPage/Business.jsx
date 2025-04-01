@@ -72,7 +72,7 @@ export default function Business(){
         // add functionality to redirect to error page (404 page)
         setServerErrors(error.response.data.message)
             
-            console.log(`Error retrieving businesses information: ${error.response.data.message}`)
+            //console.log(`Error retrieving businesses information: ${error.response.data.message}`)
       }
     }
     
