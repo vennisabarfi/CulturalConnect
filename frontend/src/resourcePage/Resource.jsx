@@ -72,7 +72,7 @@ export default function Resource(){
         // add functionality to redirect to error page (404 page)
         setServerErrors(error.response.data.message)
             
-            console.log(`Error retrieving resources information: ${error.response.data.message}`)
+            //console.log(`Error retrieving resources information: ${error.response.data.message}`)
       }
     }
     
